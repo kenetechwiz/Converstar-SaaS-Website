@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converstar - Trust, Transparency, & Compliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* High-Conversion Engagement Animations & Keyframes */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(122, 51, 226, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 14px rgba(122, 51, 226, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(122, 51, 226, 0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .interactive-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .interactive-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(122, 51, 226, 0.1);
+      border-color: #7A33E2 !important;
+    }
+
+    .tactile-btn {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tactile-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(122, 51, 226, 0.3);
+    }
+
+    .shimmer-badge {
+      background: linear-gradient(90deg, #F5EEFF 0%, #EDE9FE 50%, #F5EEFF 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite;
+    }
+
+    /* Tab Switch Transition */
+    .legal-content-panel {
+      display: none;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+    .legal-content-panel.active {
+      display: block;
+    }
+  </style>
+<style>
+html{scroll-behavior:smooth}
+body>section{animation:csPageSection .65s ease both}
+body>section:nth-of-type(2){animation-delay:.04s}
+body>section:nth-of-type(3){animation-delay:.08s}
+body>section:nth-of-type(4){animation-delay:.12s}
+.interactive-btn,.pricing-card,.floating-mockup,.feature-card{transition:transform .28s cubic-bezier(.22,1,.36,1),box-shadow .28s ease,filter .28s ease}
+.interactive-btn:hover,.pricing-card:hover,.floating-mockup:hover,.feature-card:hover{transform:translateY(-3px)}
+@keyframes csPageSection{from{opacity:.001;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}body>section{animation:none}.interactive-btn,.pricing-card,.floating-mockup,.feature-card{transition:none}}
+</style><style>
+
+/* Converstar global motion layer */
+:root { --motion-ease: cubic-bezier(.22, 1, .36, 1); }
+
+html { scroll-behavior: smooth; }
+
+body { animation: pageEnter .55s var(--motion-ease) both; }
+
+@keyframes pageEnter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scroll reveals */
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity .7s var(--motion-ease),
+    transform .7s var(--motion-ease);
+  transition-delay: var(--motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+.motion-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance */
+.motion-hero {
+  animation: heroIn .85s var(--motion-ease) .08s both;
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Interactive lift */
+.motion-interactive {
+  transition:
+    transform .25s var(--motion-ease),
+    box-shadow .25s var(--motion-ease),
+    filter .25s var(--motion-ease);
+}
+.motion-interactive:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.02);
+}
+.motion-interactive:active {
+  transform: translateY(-1px) scale(.99);
+}
+
+/* Image/card micro motion */
+.motion-float {
+  animation: gentleFloat 5s ease-in-out infinite;
+}
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* Navigation polish */
+nav a, header a, button, [role="button"] {
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease,
+              transform .2s var(--motion-ease), box-shadow .2s ease;
+}
+nav a:hover, header a:hover { transform: translateY(-1px); }
+
+/* Respect accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body, .motion-hero, .motion-float {
+    animation: none !important;
+  }
+  .motion-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  nav a, header a, button, [role="button"], .motion-interactive {
+    transition: none !important;
+  }
+}
+
+</style>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', 'Poppins', sans-serif; background-color: #FAFAFA; color: #18181B; -webkit-font-smoothing: antialiased;">
+
+  <!-- Outer Header Wrapper Section (1140px Max Width) -->
+<header style="position: sticky; top: 0; z-index: 1000; background-color: #FFFFFF; border-bottom: 1px solid #E5E7EB;">
+    <div style="max-width: 1140px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;">
+
+      <!-- Header Logo -->
+      <a href="Home.html" style="display: flex; align-items: center; gap: 0px; text-decoration: none;">
+        <img src="https://i.ibb.co/Dfh0Z48j/remove-the-square-shape-Yh-Vuoa-QFU8apo-Rc-T3-J-Vmg-gt-ERf-CRu-OMg-OWAAf-r-ZA.jpg" alt="Converstar Logo" style="height: 39px; width: 44px; display: block;" />
+        <span style="font-size: 20px; font-weight: 800; color: #111827; letter-spacing: -0.5px;">Converstar</span>
+      </a>
+
+      <!-- Navigation -->
+      <nav style="display: flex; align-items: center; gap: 30px;">
+        <a href="Home.html" style="color:#374151; text-decoration:none; font-size:14px; font-weight:600; letter-spacing:-0.1px; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease; padding:8px 2px; display:inline-block; cursor:pointer;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 10px rgba(139,92,246,0.65), 0 0 20px rgba(139,92,246,0.35)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.color='#374151'; this.style.textShadow='none'; this.style.transform='translateY(0)';">Home</a><div style="position:relative; display:inline-block;" onmouseenter="var d=document.getElementById('nav-dd-features'); clearTimeout(d._closeTimer); d.style.opacity='1'; d.style.visibility='visible'; d.style.transform='translate(-50%,0)'; d.style.pointerEvents='auto';" onmouseleave="var d=document.getElementById('nav-dd-features'); clearTimeout(d._closeTimer); d._closeTimer=setTimeout(function(){d.style.opacity='0'; d.style.visibility='hidden'; d.style.transform='translate(-50%,4px)'; d.style.pointerEvents='none';},140);"><span style="color:#374151; font-size:14px; font-weight:600; letter-spacing:-0.1px; display:inline-flex; align-items:center; gap:4px; cursor:pointer; padding:8px 2px; transition: color 0.25s ease, text-shadow 0.25s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 10px rgba(139,92,246,0.65), 0 0 20px rgba(139,92,246,0.35)';" onmouseout="this.style.color='#374151'; this.style.textShadow='none';">Features<svg viewBox="0 0 24 24" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; transition: transform 0.25s ease;"><polyline points="6 9 12 15 18 9"></polyline></svg></span><div id="nav-dd-features" onmouseenter="clearTimeout(this._closeTimer);" style="position:absolute; top:calc(100% - 4px); left:50%; transform:translate(-50%,4px); margin-top:0; background-color:#FFFFFF; border:1px solid #E9D8FD; border-radius:12px; box-shadow:0 22px 40px -14px rgba(139,92,246,0.30), 0 8px 18px -6px rgba(0,0,0,0.08); padding:10px; width:300px; opacity:0; visibility:hidden; pointer-events:none; transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease; z-index:1001;"><a href="feature%20socialproof.html" style="display:block; padding:10px 14px; border-radius:8px; text-decoration:none; transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.backgroundColor='#F5F0FF'; this.style.transform='translateX(3px)'; this.querySelector('.ddt').style.color='#7C3AED'; this.querySelector('.ddt').style.textShadow='0 0 8px rgba(139,92,246,0.45)';" onmouseout="this.style.backgroundColor='transparent'; this.style.transform='translateX(0)'; this.querySelector('.ddt').style.color='#111827'; this.querySelector('.ddt').style.textShadow='none';"><div class="ddt" style="font-size:14px; font-weight:700; color:#111827; margin-bottom:2px; transition: color 0.2s ease, text-shadow 0.2s ease;">Social Proof &amp; Urgency</div><div style="font-size:12.5px; color:#6B7280; line-height:1.4;">Live counters, inline reviews &amp; rotating widgets</div></a><a href="feature%20targeting.html" style="display:block; padding:10px 14px; border-radius:8px; text-decoration:none; transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.backgroundColor='#F5F0FF'; this.style.transform='translateX(3px)'; this.querySelector('.ddt').style.color='#7C3AED'; this.querySelector('.ddt').style.textShadow='0 0 8px rgba(139,92,246,0.45)';" onmouseout="this.style.backgroundColor='transparent'; this.style.transform='translateX(0)'; this.querySelector('.ddt').style.color='#111827'; this.querySelector('.ddt').style.textShadow='none';"><div class="ddt" style="font-size:14px; font-weight:700; color:#111827; margin-bottom:2px; transition: color 0.2s ease, text-shadow 0.2s ease;">Targeting &amp; Triggers</div><div style="font-size:12.5px; color:#6B7280; line-height:1.4;">Visibility rules, translation &amp; behavioral pop-ups</div></a><a href="feature%20chat.html" style="display:block; padding:10px 14px; border-radius:8px; text-decoration:none; transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.backgroundColor='#F5F0FF'; this.style.transform='translateX(3px)'; this.querySelector('.ddt').style.color='#7C3AED'; this.querySelector('.ddt').style.textShadow='0 0 8px rgba(139,92,246,0.45)';" onmouseout="this.style.backgroundColor='transparent'; this.style.transform='translateX(0)'; this.querySelector('.ddt').style.color='#111827'; this.querySelector('.ddt').style.textShadow='none';"><div class="ddt" style="font-size:14px; font-weight:700; color:#111827; margin-bottom:2px; transition: color 0.2s ease, text-shadow 0.2s ease;">Direct Chat &amp; Lead Capture</div><div style="font-size:12.5px; color:#6B7280; line-height:1.4;">Messenger, WhatsApp, SMS &amp; request collectors</div></a><a href="feature%20analytics.html" style="display:block; padding:10px 14px; border-radius:8px; text-decoration:none; transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.backgroundColor='#F5F0FF'; this.style.transform='translateX(3px)'; this.querySelector('.ddt').style.color='#7C3AED'; this.querySelector('.ddt').style.textShadow='0 0 8px rgba(139,92,246,0.45)';" onmouseout="this.style.backgroundColor='transparent'; this.style.transform='translateX(0)'; this.querySelector('.ddt').style.color='#111827'; this.querySelector('.ddt').style.textShadow='none';"><div class="ddt" style="font-size:14px; font-weight:700; color:#111827; margin-bottom:2px; transition: color 0.2s ease, text-shadow 0.2s ease;">Analytics &amp; Tracking</div><div style="font-size:12.5px; color:#6B7280; line-height:1.4;">Real-time maps, campaign stats &amp; button tracking</div></a></div></div><a href="Pricing.html" style="color:#374151; text-decoration:none; font-size:14px; font-weight:600; letter-spacing:-0.1px; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease; padding:8px 2px; display:inline-block; cursor:pointer;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 10px rgba(139,92,246,0.65), 0 0 20px rgba(139,92,246,0.35)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.color='#374151'; this.style.textShadow='none'; this.style.transform='translateY(0)';">Pricing</a><div style="position:relative; display:inline-block;" onmouseenter="var d=document.getElementById('nav-dd-solutions'); clearTimeout(d._closeTimer); d.style.opacity='1'; d.style.visibility='visible'; d.style.transform='translate(-50%,0)'; d.style.pointerEvents='auto';" onmouseleave="var d=document.getElementById('nav-dd-solutions'); clearTimeout(d._closeTimer); d._closeTimer=setTimeout(function(){d.style.opacity='0'; d.style.visibility='hidden'; d.style.transform='translate(-50%,4px)'; d.style.pointerEvents='none';},140);"><span style="color:#374151; font-size:14px; font-weight:600; letter-spacing:-0.1px; display:inline-flex; align-items:center; gap:4px; cursor:pointer; padding:8px 2px; transition: color 0.25s ease, text-shadow 0.25s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 10px rgba(139,92,246,0.65), 0 0 20px rgba(139,92,246,0.35)';" onmouseout="this.style.color='#374151'; this.style.textShadow='none';">Solutions<svg viewBox="0 0 24 24" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; transition: transform 0.25s ease;"><polyline points="6 9 12 15 18 9"></polyline></svg></span><div id="nav-dd-solutions" onmouseenter="clearTimeout(this._closeTimer);" style="position:absolute; top:calc(100% - 4px); left:50%; transform:translate(-50%,4px); margin-top:0; background-color:#FFFFFF; border:1px solid #E9D8FD; border-radius:12px; box-shadow:0 22px 40px -14px rgba(139,92,246,0.30), 0 8px 18px -6px rgba(0,0,0,0.08); padding:10px; width:290px; opacity:0; visibility:hidden; pointer-events:none; transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease; z-index:1001;"><a href="solutions%20ecommerce.html" style="display:block; padding:10px 14px; border-radius:8px; text-decoration:none; transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.backgroundColor='#F5F0FF'; this.style.transform='translateX(3px)'; this.querySelector('.ddt').style.color='#7C3AED'; this.querySelector('.ddt').style.textShadow='0 0 8px rgba(139,92,246,0.45)';" onmouseout="this.style.backgroundColor='transparent'; this.style.transform='translateX(0)'; this.querySelector('.ddt').style.color='#111827'; this.querySelector('.ddt').style.textShadow='none';"><div class="ddt" style="font-size:14px; font-weight:700; color:#111827; margin-bottom:2px; transition: color 0.2s ease, text-shadow 0.2s ease;">For E-commerce</div><div style="font-size:12.5px; color:#6B7280; line-height:1.4;">Save abandoned carts &amp; boost live sales</div></a><a href="solutions%20saas.html" style="display:block; padding:10px 14px; border-radius:8px; text-decoration:none; transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.backgroundColor='#F5F0FF'; this.style.transform='translateX(3px)'; this.querySelector('.ddt').style.color='#7C3AED'; this.querySelector('.ddt').style.textShadow='0 0 8px rgba(139,92,246,0.45)';" onmouseout="this.style.backgroundColor='transparent'; this.style.transform='translateX(0)'; this.querySelector('.ddt').style.color='#111827'; this.querySelector('.ddt').style.textShadow='none';"><div class="ddt" style="font-size:14px; font-weight:700; color:#111827; margin-bottom:2px; transition: color 0.2s ease, text-shadow 0.2s ease;">For SaaS &amp; Startups</div><div style="font-size:12.5px; color:#6B7280; line-height:1.4;">SPA optimization &amp; onboarding widgets</div></a><a href="solutions%20agency.html" style="display:block; padding:10px 14px; border-radius:8px; text-decoration:none; transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.backgroundColor='#F5F0FF'; this.style.transform='translateX(3px)'; this.querySelector('.ddt').style.color='#7C3AED'; this.querySelector('.ddt').style.textShadow='0 0 8px rgba(139,92,246,0.45)';" onmouseout="this.style.backgroundColor='transparent'; this.style.transform='translateX(0)'; this.querySelector('.ddt').style.color='#111827'; this.querySelector('.ddt').style.textShadow='none';"><div class="ddt" style="font-size:14px; font-weight:700; color:#111827; margin-bottom:2px; transition: color 0.2s ease, text-shadow 0.2s ease;">For Agencies &amp; Marketers</div><div style="font-size:12.5px; color:#6B7280; line-height:1.4;">Team system, white-labeling &amp; QR deployment</div></a></div></div>
+      </nav>
+
+      <!-- App Links -->
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="https://app.converstar.com/login" style="color:#374151; text-decoration:none; font-size:14px; font-weight:600; padding: 8px 16px; border-radius:8px; transition: color 0.25s ease, text-shadow 0.25s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 10px rgba(139,92,246,0.65), 0 0 20px rgba(139,92,246,0.35)';" onmouseout="this.style.color='#374151'; this.style.textShadow='none';">Sign In</a>
+        <a href="https://app.converstar.com/register" style="background-color: #8B5CF6; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 8px; display: inline-block; transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;" onmouseover="this.style.transform='translateY(-1.5px)'; this.style.filter='brightness(1.12)'; this.style.boxShadow='0 8px 20px -4px rgba(139,92,246,0.55)';" onmouseout="this.style.transform='translateY(0)'; this.style.filter='brightness(1)'; this.style.boxShadow='none';">Get Started</a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Intermediate Main Content Section: Legal Page Header (1000px Max Width) -->
+  <section class="animate-fade-in" style="width: 100%; padding: 60px 0 30px 0; background-color: #FAFAFA; box-sizing: border-box; text-align: center;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; align-items: center; gap: 16px; box-sizing: border-box;">
+      
+      <h1 style="color: #18181B; font-size: 40px; font-weight: 800; line-height: 1.15; margin: 0; letter-spacing: -1px;">
+        Trust, Transparency, & Compliance
+      </h1>
+
+      <p style="color: #71717A; font-size: 16px; line-height: 1.5; margin: 0; max-width: 640px;">
+        We've assembled all of our legal documentation in a clean, comprehensive portal. Our infrastructure is built from the ground up on GDPR and HIPAA compliance.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Intermediate Main Content Section: Interactive Legal Navigation Tabs (1000px Max Width) -->
+  <section class="animate-fade-in" style="width: 100%; padding: 10px 0 30px 0; background-color: #FAFAFA; box-sizing: border-box;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+      
+      <div style="display: flex; gap: 12px; background-color: #F4F4F5; padding: 6px; border-radius: 12px; width: fit-content; flex-wrap: wrap;">
+        <button onclick="switchTab('terms', this)" class="legal-tab-btn tactile-btn" style="background-color: #7A33E2; color: #FFFFFF; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">1. Terms of Use</button>
+        <button onclick="switchTab('privacy', this)" class="legal-tab-btn tactile-btn" style="background-color: transparent; color: #71717A; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">2. Privacy Policy</button>
+        <button onclick="switchTab('dpa', this)" class="legal-tab-btn tactile-btn" style="background-color: transparent; color: #71717A; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">3. Data Processing Agreement (DPA)</button>
+        <button onclick="switchTab('cookie', this)" class="legal-tab-btn tactile-btn" style="background-color: transparent; color: #71717A; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">4. Cookie Policy</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Intermediate Main Content Section: Dynamic Legal Document Cards Container (1000px Max Width) -->
+  <section style="width: 100%; padding: 10px 0 80px 0; background-color: #FAFAFA; box-sizing: border-box;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+      
+      <!-- TAB 1: TERMS OF USE -->
+      <div id="terms-panel" class="legal-content-panel active" style="background-color: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 40px; box-sizing: border-box; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+        
+        <div style="border-bottom: 1px solid #F4F4F5; padding-bottom: 20px; margin-bottom: 30px;">
+          <h2 style="color: #18181B; font-size: 24px; font-weight: 800; margin: 0 0 6px 0;">Terms of Use</h2>
+          <span style="color: #A1A1AA; font-size: 13px;">Last revised: June 12, 2024</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 32px;">
+          
+          <!-- Section 1 & 2 & 3 Grid Layout -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">1. Introduction</h3>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+                Welcome to Converstar, a fully-loaded toolkit designed to enhance your website's engagement and conversion rates through various marketing tools, plugins, and pixel sets. By accessing or using our services, you agree to comply with and be bound by the following Terms of Use. Please read them carefully. If you do not agree with any part of these terms, you must not use our services.
+              </p>
+            </div>
+
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">2. Definitions</h3>
+              <ul style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0; padding-left: 18px;">
+                <li style="margin-bottom: 6px;"><strong>"We," "Us," "Our":</strong> Refers to Converstar and its affiliated companies.</li>
+                <li style="margin-bottom: 6px;"><strong>"You," "Your":</strong> Refers to the user or subscriber of the Converstar services.</li>
+                <li style="margin-bottom: 6px;"><strong>"Services":</strong> Refers to the tools, software, and any other services provided by Converstar.</li>
+              </ul>
+            </div>
+
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">3. Use of Services</h3>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0 0 12px 0;">
+                You must be at least 18 years old to use our services. By using our services, you represent and warrant that you are of legal age and capable of forming a binding contract.
+              </p>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+                You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
+              </p>
+            </div>
+          </div>
+
+          <!-- Section 4 & 5 -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">4. Limited License & Access</h3>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+                Subject to these Terms of Use, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use the services for your personal or business use. You agree not to reproduce, duplicate, copy, sell, resell, or exploit any portion of the services without express written permission.
+              </p>
+            </div>
+
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">5. User Content</h3>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+                You retain sole responsibility for all content that you upload, post, email, transmit, or otherwise make available via the services. We do not control the content posted via the services and do not guarantee the accuracy, integrity, or quality of such content.
+              </p>
+            </div>
+          </div>
+
+          <!-- Section 6, 7, 8 full text block -->
+          <div style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;">
+            <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0;">6. Payment, Refunds, & Intellectual Property</h3>
+            <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+              By subscribing to our services, you agree to pay all applicable fees. All fees are non-refundable except as expressly provided in our Refund Policy. We offer a 30-day money-back guarantee on first-time purchases. To request a refund, contact our support team at support@converstar.com or through our Help Center. All intellectual property rights in and to the services and content are owned by Converstar or its licensors.
+            </p>
+          </div>
+
+          <!-- Section 9, 10, 11, 12 -->
+          <div style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;">
+            <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0;">7. Disclaimers, Governing Law, & Contact</h3>
+            <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+              The services are provided on an "as is" and "as available" basis. We disclaim all warranties of any kind, whether express or implied. These Terms of Use shall be governed and construed in accordance with the laws of the jurisdiction in which Converstar operates. If you have any questions about these Terms of Use, please contact us at support@converstar.com.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TAB 2: PRIVACY POLICY -->
+      <div id="privacy-panel" class="legal-content-panel" style="background-color: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 40px; box-sizing: border-box; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+        
+        <div style="border-bottom: 1px solid #F4F4F5; padding-bottom: 20px; margin-bottom: 30px;">
+          <h2 style="color: #18181B; font-size: 24px; font-weight: 800; margin: 0 0 6px 0;">Privacy Policy</h2>
+          <span style="color: #A1A1AA; font-size: 13px;">Last revised: June 12, 2024</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Registered Entity Box -->
+          <div style="background-color: #F5EEFF; border: 1px solid rgba(122, 51, 226, 0.2); border-radius: 12px; padding: 24px; box-sizing: border-box;">
+            <h4 style="color: #7A33E2; font-size: 14px; font-weight: 700; text-transform: uppercase; margin: 0 0 8px 0; letter-spacing: 0.5px;">Registered Entity Office</h4>
+            <p style="color: #18181B; font-size: 14px; line-height: 1.6; margin: 0 0 8px 0;">
+              <strong>Lacoster, LLC (Converstar)</strong>, 313 Westen 2nd Street, Suite #4131, Casper, Wyoming - 82601, United States
+            </p>
+            <p style="color: #71717A; font-size: 14px; margin: 0;">
+              Contact information: support@converstar.com
+            </p>
+          </div>
+
+          <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+            Lacoster, LLC, the creator of Converstar, is deeply committed to safeguarding your privacy. We understand the importance of your personal information and are dedicated to protecting it. This Privacy Policy details our practices and procedures concerning the collection, use, and sharing of your personal information, clearly outlining how we handle your data, we aim to provide transparency and build trust with our users.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 10px;">
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">Information We Collect</h3>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+                Personal identity information, billing details securely handled via Stripe/PayPal, and transient cookie/tracking behavior metrics.
+              </p>
+            </div>
+
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">How We Collect Data</h3>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+                Through customer user forms, cookie consent banners, web beacons, and log file metrics triggered programmatically.
+              </p>
+            </div>
+
+            <div class="interactive-card" style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+              <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">Data Protection</h3>
+              <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+                Complies with end-to-end industry-grade encryption, SOC-2 alignment, and strict GDPR handling of consumer identity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 3: DPA -->
+      <div id="dpa-panel" class="legal-content-panel" style="background-color: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 40px; box-sizing: border-box; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+        
+        <div style="border-bottom: 1px solid #F4F4F5; padding-bottom: 20px; margin-bottom: 30px;">
+          <h2 style="color: #18181B; font-size: 24px; font-weight: 800; margin: 0 0 6px 0;">Data Processing Agreement (DPA)</h2>
+          <span style="color: #A1A1AA; font-size: 13px;">Effective as of May 25, 2018</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+            This Data Processing Agreement ("DPA") reflects the parties' agreement with respect to the terms governing the processing of Personal Data under the Converstar Terms of Service.
+          </p>
+          <div style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+            <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 10px 0;">Standard Contractual Clauses (SCC)</h3>
+            <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+              Converstar processes personal data strictly on behalf of the controller and in accordance with documented instructions. Both parties ensure appropriate technical and organizational security measures are implemented to protect data integrity and confidentiality.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 4: COOKIE POLICY -->
+      <div id="cookie-panel" class="legal-content-panel" style="background-color: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 40px; box-sizing: border-box; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+        
+        <div style="border-bottom: 1px solid #F4F4F5; padding-bottom: 20px; margin-bottom: 30px;">
+          <h2 style="color: #18181B; font-size: 24px; font-weight: 800; margin: 0 0 6px 0;">Cookie Policy</h2>
+          <span style="color: #A1A1AA; font-size: 13px;">Last revised: June 12, 2024</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <p style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0;">
+            We use cookies and similar tracking technologies to track activity on our service and hold certain information. Cookies are files with small amount of data which may include an anonymous unique identifier.
+          </p>
+          <div style="background-color: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; box-sizing: border-box;">
+            <h3 style="color: #18181B; font-size: 16px; font-weight: 700; margin: 0 0 10px 0;">Types of Cookies We Use</h3>
+            <ul style="color: #71717A; font-size: 14px; line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li style="margin-bottom: 6px;"><strong>Essential Cookies:</strong> Required for user authentication and security.</li>
+              <li style="margin-bottom: 6px;"><strong>Preference Cookies:</strong> Remember your language and UI setup choices.</li>
+              <li style="margin-bottom: 6px;"><strong>Analytics Cookies:</strong> Track visitor interaction to optimize conversion metrics.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Outer Footer Wrapper Section (1140px Max Width) -->
+<footer style="background-color: #FFFFFF; border-top: 1px solid #E5E7EB; padding: 60px 24px 30px 24px;">
+    <div style="max-width: 1140px; margin: 0 auto;">
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px;">
+
+        <div>
+          <!-- Footer Logo -->
+          <a href="Home.html" style="display: flex; align-items: center; gap: 0px; text-decoration: none; margin-bottom: 16px;">
+            <img src="https://i.ibb.co/Dfh0Z48j/remove-the-square-shape-Yh-Vuoa-QFU8apo-Rc-T3-J-Vmg-gt-ERf-CRu-OMg-OWAAf-r-ZA.jpg" alt="Converstar Logo" style="height: 39px; width: 44px; display: block;" />
+            <span style="font-size: 20px; font-weight: 800; color: #111827; letter-spacing: -0.5px;">Converstar</span>
+          </a>
+          <p style="font-size: 13px; color: #6B7280; line-height: 1.6; margin: 0; max-width: 280px;">
+            The ultimate conversion engine that turns bouncing traffic into loyal, paying customers on complete autopilot.
+          </p>
+        </div>
+
+        <div>
+          <h5 style="font-size: 14px; font-weight: 700; color: #111827; margin: 0 0 16px 0;">Product</h5>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="Features.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Features</a><a href="Pricing.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Pricing</a><a href="integrations.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Integrations</a><a href="solutions%20saas.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Solutions</a>
+          </div>
+        </div>
+
+        <div>
+          <h5 style="font-size: 14px; font-weight: 700; color: #111827; margin: 0 0 16px 0;">Solutions</h5>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="solutions%20ecommerce.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">For E-commerce</a><a href="solutions%20saas.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">For SaaS &amp; Startups</a><a href="solutions%20agency.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">For Agencies</a><a href="support.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Help Center &amp; Support</a>
+          </div>
+        </div>
+
+        <div>
+          <h5 style="font-size: 14px; font-weight: 700; color: #111827; margin: 0 0 16px 0;">Legal</h5>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="about%20story.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">About Us</a><a href="legal.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Privacy Policy</a><a href="legal.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Terms of Service</a><a href="legal.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Cookie Policy</a><a href="legal.html" style="color:#6B7280; text-decoration:none; font-size:13.5px; font-weight:500; display:inline-block; width:fit-content; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.textShadow='0 0 8px rgba(139,92,246,0.45)'; this.style.transform='translateX(2px)';" onmouseout="this.style.color='#6B7280'; this.style.textShadow='none'; this.style.transform='translateX(0)';">Data Security</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="border-top: 1px solid #F3F4F6; padding-top: 24px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size: 12px; color: #9CA3AF;">
+          &copy; 2026 Converstar. All rights reserved.
+        </div>
+
+        <!-- Social Icons -->
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter" style="color:#6B7280; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; transition: color 0.25s ease, filter 0.25s ease, transform 0.25s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.filter='drop-shadow(0 0 6px rgba(139,92,246,0.65))'; this.style.transform='translateY(-2px)';" onmouseout="this.style.color='#6B7280'; this.style.filter='none'; this.style.transform='translateY(0)';"><svg style="width:18px; height:18px; fill:currentColor; display:block;" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.58 8.58 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a><a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:#6B7280; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; transition: color 0.25s ease, filter 0.25s ease, transform 0.25s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.filter='drop-shadow(0 0 6px rgba(139,92,246,0.65))'; this.style.transform='translateY(-2px)';" onmouseout="this.style.color='#6B7280'; this.style.filter='none'; this.style.transform='translateY(0)';"><svg style="width:18px; height:18px; fill:currentColor; display:block;" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z"/></svg></a><a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub" style="color:#6B7280; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; transition: color 0.25s ease, filter 0.25s ease, transform 0.25s ease;" onmouseover="this.style.color='#8B5CF6'; this.style.filter='drop-shadow(0 0 6px rgba(139,92,246,0.65))'; this.style.transform='translateY(-2px)';" onmouseout="this.style.color='#6B7280'; this.style.filter='none'; this.style.transform='translateY(0)';"><svg style="width:18px; height:18px; fill:currentColor; display:block;" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript for Legal Document Tabs -->
+  <script>
+    function switchTab(tabName, btnElement) {
+      // Hide all panels
+      document.querySelectorAll('.legal-content-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      
+      // Reset all tab buttons styling
+      document.querySelectorAll('.legal-tab-btn').forEach(btn => {
+        btn.style.backgroundColor = 'transparent';
+        btn.style.color = '#71717A';
+      });
+
+      // Activate selected panel
+      document.getElementById(tabName + '-panel').classList.add('active');
+
+      // Style active button
+      btnElement.style.backgroundColor = '#7A33E2';
+      btnElement.style.color = '#FFFFFF';
+    }
+  </script>
+
+
+<script>
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initMotion() {
+    if (reduceMotion) return;
+
+    /* Reveal meaningful page blocks as they enter the viewport. */
+    var candidates = document.querySelectorAll(
+      'main > section, section, article, .card, .feature-card, .pricing-card, ' +
+      '.testimonial, .integration-card, .faq-item, .solution-card'
+    );
+
+    var seen = new WeakSet();
+    var index = 0;
+
+    Array.prototype.forEach.call(candidates, function (el) {
+      if (seen.has(el)) return;
+      seen.add(el);
+
+      /* Avoid animating tiny nested sections and hidden elements. */
+      if (el.offsetHeight < 45 || el.closest('[hidden]')) return;
+
+      el.classList.add('motion-reveal');
+
+      /* Subtle stagger without making pages feel slow. */
+      var delay = Math.min((index % 5) * 55, 220);
+      el.style.setProperty('--motion-delay', delay + 'ms');
+      index++;
+    });
+
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.motion-reveal'),
+      function (el) { observer.observe(el); }
+    );
+
+    /* Give prominent CTAs/cards a lightweight hover lift. */
+    Array.prototype.forEach.call(
+      document.querySelectorAll(
+        'button, .btn, a[class*="button"], a[class*="btn"], ' +
+        '.card, .feature-card, .pricing-card, .integration-card'
+      ),
+      function (el) { el.classList.add('motion-interactive'); }
+    );
+
+    /* Add a restrained floating effect to likely visual/illustration blocks. */
+    Array.prototype.forEach.call(
+      document.querySelectorAll('img[class*="hero"], .hero img, .hero-image, .hero-visual'),
+      function (el) { el.classList.add('motion-float'); }
+    );
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMotion);
+  } else {
+    initMotion();
+  }
+})();
+</script>
+
+</body>
+</html>
