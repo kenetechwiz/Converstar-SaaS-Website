@@ -308,6 +308,206 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 @media (prefers-reduced-motion: reduce) {
   .cs-nav-dropdown-wrap:hover > .cs-dropdown { transition: none !important; }
 }
+
+/* =========================================================
+   Responsive navigation + dashboard fixes
+   ========================================================= */
+
+/* Dropdowns must never be clipped by the header/nav. */
+.cs-site-header,
+.cs-header-inner,
+.cs-main-nav,
+.cs-nav-dropdown-wrap {
+  overflow: visible !important;
+}
+
+.cs-nav-dropdown-wrap {
+  position: relative !important;
+  z-index: 1002 !important;
+}
+
+.cs-dropdown {
+  z-index: 9999 !important;
+  max-width: min(420px, calc(100vw - 32px)) !important;
+}
+
+/* Desktop: hover opens the dropdown cleanly. */
+@media (min-width: 1025px) {
+  .cs-nav-dropdown-wrap:hover > .cs-dropdown,
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translate(-50%, 0) !important;
+  }
+
+  .cs-nav-dropdown-wrap:hover > .cs-nav-toggle svg,
+  .cs-nav-dropdown-wrap.is-open > .cs-nav-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* Tablet + mobile: tap/click accordion behavior. */
+@media (max-width: 1024px) {
+  .cs-site-header .cs-header-inner > nav {
+    overflow: visible !important;
+  }
+
+  .cs-main-nav {
+    overflow: visible !important;
+  }
+
+  .cs-nav-dropdown-wrap {
+    display: inline-block !important;
+  }
+
+  .cs-nav-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    min-height: 44px;
+    padding: 8px 4px !important;
+    touch-action: manipulation;
+  }
+
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: absolute !important;
+    top: calc(100% + 4px) !important;
+    left: 0 !important;
+    right: auto !important;
+    width: min(420px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+    transform: translateY(4px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  .cs-nav-dropdown-wrap.is-open > .cs-nav-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* Mobile: keep the menu wrapped instead of using a horizontal scroller
+   that can clip an open dropdown. */
+@media (max-width: 768px) {
+  .cs-site-header .cs-header-inner > nav {
+    overflow: visible !important;
+    width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+  }
+
+  .cs-main-nav {
+    gap: 8px 14px !important;
+  }
+
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    left: 0 !important;
+    right: auto !important;
+    width: min(390px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  .cs-dropdown-link {
+    min-height: 48px !important;
+  }
+}
+
+/* Homepage analytics/dashboard mockup:
+   sidebar and dashboard content stack below 992px. */
+@media (max-width: 992px) {
+  .cs-inline-97ee4194f4 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    overflow: visible !important;
+  }
+
+  .cs-inline-2d3ab085bd {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid #F3F4F6 !important;
+    padding: 0 0 16px 0 !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .cs-inline-2d3ab085bd > div {
+    flex: 0 1 auto !important;
+  }
+
+  .cs-inline-ee3d55bf99,
+  .cs-inline-3c083ca552 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 100% !important;
+  }
+
+  .cs-inline-11d240cbc8 {
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .cs-inline-47f83cc9bb,
+  .cs-inline-6a9188d613,
+  .cs-inline-9cb8aba6a3 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .cs-inline-e28eef1e28 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-inline-97ee4194f4 {
+    padding: 16px !important;
+    gap: 16px !important;
+  }
+
+  .cs-inline-2d3ab085bd {
+    gap: 6px !important;
+  }
+
+  .cs-inline-11d240cbc8 {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .cs-inline-47f83cc9bb {
+    padding: 20px !important;
+    min-height: 260px !important;
+  }
+
+  .cs-inline-9cbe1fe386 {
+    width: 100% !important;
+    height: 120px !important;
+  }
+}
+
 </style>
 </head>
 <body class="cs-inline-8e77d9f977 cs-site-body">
@@ -321,7 +521,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 </a>
 <!-- Navigation -->
 <nav class="cs-inline-97c1e423cf cs-main-nav">
-<a class="cs-inline-b7bc293278" href="index.html">Home</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap" onmouseenter="var d=document.getElementById('nav-dd-features'); clearTimeout(d._closeTimer); d.style.opacity='1'; d.style.visibility='visible'; d.style.transform='translate(-50%,0)'; d.style.pointerEvents='auto';" onmouseleave="var d=document.getElementById('nav-dd-features'); clearTimeout(d._closeTimer); d._closeTimer=setTimeout(function(){d.style.opacity='0'; d.style.visibility='hidden'; d.style.transform='translate(-50%,4px)'; d.style.pointerEvents='none';},140);"><span class="cs-inline-10d9efd2a8">Features<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span><div class="cs-inline-91dbd449a4 cs-dropdown cs-fixed-large-width" id="nav-dd-features" onmouseenter="clearTimeout(this._closeTimer);"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20socialproof.html"><div class="ddt cs-inline-a393e84ba6">Social Proof &amp; Urgency</div><div class="cs-inline-d3b4f4eb44">Live counters, inline reviews &amp; rotating widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20targeting.html"><div class="ddt cs-inline-a393e84ba6">Targeting &amp; Triggers</div><div class="cs-inline-d3b4f4eb44">Visibility rules, translation &amp; behavioral pop-ups</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20chat.html"><div class="ddt cs-inline-a393e84ba6">Direct Chat &amp; Lead Capture</div><div class="cs-inline-d3b4f4eb44">Messenger, WhatsApp, SMS &amp; request collectors</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20analytics.html"><div class="ddt cs-inline-a393e84ba6">Analytics &amp; Tracking</div><div class="cs-inline-d3b4f4eb44">Real-time maps, campaign stats &amp; button tracking</div></a></div></div><a class="cs-inline-b7bc293278" href="Pricing.html">Pricing</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap" onmouseenter="var d=document.getElementById('nav-dd-solutions'); clearTimeout(d._closeTimer); d.style.opacity='1'; d.style.visibility='visible'; d.style.transform='translate(-50%,0)'; d.style.pointerEvents='auto';" onmouseleave="var d=document.getElementById('nav-dd-solutions'); clearTimeout(d._closeTimer); d._closeTimer=setTimeout(function(){d.style.opacity='0'; d.style.visibility='hidden'; d.style.transform='translate(-50%,4px)'; d.style.pointerEvents='none';},140);"><span class="cs-inline-140a1aa94a">Solutions<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span><div class="cs-inline-4b2970594c cs-dropdown" id="nav-dd-solutions" onmouseenter="clearTimeout(this._closeTimer);"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20ecommerce.html"><div class="ddt cs-inline-a393e84ba6">For E-commerce</div><div class="cs-inline-d3b4f4eb44">Save abandoned carts &amp; boost live sales</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20saas.html"><div class="ddt cs-inline-a393e84ba6">For SaaS &amp; Startups</div><div class="cs-inline-d3b4f4eb44">SPA optimization &amp; onboarding widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20agency.html"><div class="ddt cs-inline-a393e84ba6">For Agencies &amp; Marketers</div><div class="cs-inline-d3b4f4eb44">Team system, white-labeling &amp; QR deployment</div></a></div></div>
+<a class="cs-inline-b7bc293278" href="index.html">Home</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-10d9efd2a8 cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-features">Features<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-91dbd449a4 cs-dropdown cs-fixed-large-width" id="nav-dd-features"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20socialproof.html"><div class="ddt cs-inline-a393e84ba6">Social Proof &amp; Urgency</div><div class="cs-inline-d3b4f4eb44">Live counters, inline reviews &amp; rotating widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20targeting.html"><div class="ddt cs-inline-a393e84ba6">Targeting &amp; Triggers</div><div class="cs-inline-d3b4f4eb44">Visibility rules, translation &amp; behavioral pop-ups</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20chat.html"><div class="ddt cs-inline-a393e84ba6">Direct Chat &amp; Lead Capture</div><div class="cs-inline-d3b4f4eb44">Messenger, WhatsApp, SMS &amp; request collectors</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20analytics.html"><div class="ddt cs-inline-a393e84ba6">Analytics &amp; Tracking</div><div class="cs-inline-d3b4f4eb44">Real-time maps, campaign stats &amp; button tracking</div></a></div></div><a class="cs-inline-b7bc293278" href="Pricing.html">Pricing</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-140a1aa94a cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-solutions">Solutions<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-4b2970594c cs-dropdown" id="nav-dd-solutions"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20ecommerce.html"><div class="ddt cs-inline-a393e84ba6">For E-commerce</div><div class="cs-inline-d3b4f4eb44">Save abandoned carts &amp; boost live sales</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20saas.html"><div class="ddt cs-inline-a393e84ba6">For SaaS &amp; Startups</div><div class="cs-inline-d3b4f4eb44">SPA optimization &amp; onboarding widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20agency.html"><div class="ddt cs-inline-a393e84ba6">For Agencies &amp; Marketers</div><div class="cs-inline-d3b4f4eb44">Team system, white-labeling &amp; QR deployment</div></a></div></div>
 </nav>
 <!-- App Links -->
 <div class="cs-inline-c9a7335caf">
@@ -569,5 +769,68 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 })();
 </script>
+
+<script>
+/* Responsive Features/Solutions dropdowns.
+   Desktop uses CSS hover; tablet/mobile use tap-to-toggle. */
+(function () {
+  function initResponsiveNav() {
+    var wraps = document.querySelectorAll('.cs-nav-dropdown-wrap');
+
+    wraps.forEach(function (wrap) {
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (!toggle || !dropdown) return;
+
+      toggle.addEventListener('click', function (event) {
+        if (window.matchMedia('(max-width: 1024px)').matches) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          var willOpen = !wrap.classList.contains('is-open');
+
+          document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
+            if (other !== wrap) {
+              other.classList.remove('is-open');
+              var otherToggle = other.querySelector('.cs-nav-toggle');
+              if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          wrap.classList.toggle('is-open', willOpen);
+          toggle.setAttribute('aria-expanded', String(willOpen));
+        }
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('.cs-nav-dropdown-wrap')) {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (wrap) {
+          wrap.classList.remove('is-open');
+          var toggle = wrap.querySelector('.cs-nav-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (!window.matchMedia('(max-width: 1024px)').matches) {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (wrap) {
+          wrap.classList.remove('is-open');
+          var toggle = wrap.querySelector('.cs-nav-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initResponsiveNav);
+  } else {
+    initResponsiveNav();
+  }
+})();
+</script>
+
 </body>
 </html>
