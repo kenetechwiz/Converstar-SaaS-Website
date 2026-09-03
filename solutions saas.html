@@ -637,6 +637,107 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 }
 </style>
+<style>
+/* Mobile navbar dropdown containment fix */
+@media (max-width: 768px) {
+  nav .dropdown,
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown,
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    box-sizing: border-box;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    left: 0 !important;
+    right: auto !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  /* When the dropdown is nested in a right-aligned wrapper, anchor it to
+     the viewport-safe edge rather than allowing it to extend off-screen. */
+  nav .dropdown.align-right > .dropdown-menu,
+  nav .dropdown.right > .dropdown-menu,
+  nav .dropdown-menu.align-right,
+  nav .dropdown-content.align-right,
+  .navbar .dropdown.align-right > .dropdown-menu,
+  .navbar .dropdown.right > .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  nav .dropdown-menu *,
+  nav .dropdown-content *,
+  nav .submenu *,
+  nav [role="menu"] *,
+  .navbar .dropdown-menu *,
+  .navbar .dropdown-content *,
+  .navbar .submenu *,
+  .navbar [role="menu"] * {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Preserve normal desktop positioning; only prevent oversized menus. */
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    max-width: min(90vw, 640px);
+    box-sizing: border-box;
+  }
+}
+</style>
+<style>
+/* Mobile/tablet Features & Solutions dropdown fix */
+@media (max-width: 1024px) {
+  nav .dropdown, .navbar .dropdown { position: relative !important; }
+  nav .dropdown-menu, nav .dropdown-content, nav [role="menu"], nav .submenu,
+  .navbar .dropdown-menu, .navbar .dropdown-content, .navbar [role="menu"], .navbar .submenu {
+    display: none; position: absolute !important; z-index: 9999 !important;
+    top: 100% !important; left: 0 !important; right: auto !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important; min-width: 0 !important;
+    max-height: calc(100vh - 90px); overflow-y: auto; overflow-x: hidden;
+  }
+  nav .dropdown.open > .dropdown-menu, nav .dropdown.open > .dropdown-content,
+  nav .dropdown.open > [role="menu"], nav .dropdown.open > .submenu,
+  .navbar .dropdown.open > .dropdown-menu, .navbar .dropdown.open > .dropdown-content,
+  .navbar .dropdown.open > [role="menu"], .navbar .dropdown.open > .submenu,
+  nav .dropdown.active > .dropdown-menu, nav .dropdown.active > .dropdown-content,
+  .navbar .dropdown.active > .dropdown-menu, .navbar .dropdown.active > .dropdown-content,
+  nav .dropdown:focus-within > .dropdown-menu, nav .dropdown:focus-within > .dropdown-content,
+  .navbar .dropdown:focus-within > .dropdown-menu, .navbar .dropdown:focus-within > .dropdown-content { display: block !important; }
+  nav .dropdown-menu.show, nav .dropdown-content.show, .navbar .dropdown-menu.show, .navbar .dropdown-content.show { display:block !important; }
+}
+@media (max-width: 767px) {
+  nav .dropdown-menu, nav .dropdown-content, nav [role="menu"], nav .submenu,
+  .navbar .dropdown-menu, .navbar .dropdown-content, .navbar [role="menu"], .navbar .submenu {
+    position: fixed !important; top: auto !important; left: 12px !important; right: 12px !important;
+    width: auto !important; max-width: none !important;
+  }
+}
+</style>
 </head>
 <body class="cs-inline-15ad2b5321 cs-site-body">
 <header class="cs-inline-eb63c261dc cs-site-header">
