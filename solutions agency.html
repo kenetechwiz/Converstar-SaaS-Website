@@ -233,6 +233,7 @@ nav a:hover, header a:hover { transform: translateY(-1px); }
 .cs-inline-15ddc66bf2 { font-size: 13px !important; color: #6B7280 !important; line-height: 1.6 !important; margin: 0 !important; max-width: 280px !important; }
 .cs-inline-993d8945c4 { font-size: 14px !important; font-weight: 700 !important; color: #111827 !important; margin: 0 0 16px 0 !important; }
 .cs-inline-2604384721 { color:#6B7280 !important; text-decoration:none !important; font-size:13.5px !important; font-weight:500 !important; display:inline-block !important; width:fit-content !important; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease !important; }
+.cs-inline-2604384721:hover, .cs-inline-2604384721:active, .cs-inline-2604384721:focus-visible { color:#8B5CF6 !important; text-shadow:0 0 10px rgba(139,92,246,.65), 0 0 20px rgba(139,92,246,.35) !important; transform:translateY(-1px) !important; }
 .cs-inline-95a317ba5b { border-top: 1px solid #F3F4F6 !important; padding-top: 24px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; }
 .cs-inline-6525114898 { font-size: 12px !important; color: #9CA3AF !important; }
 .cs-inline-b6005b36ad { color:#6B7280 !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; text-decoration:none !important; transition: color 0.25s ease, filter 0.25s ease, transform 0.25s ease !important; }
@@ -510,6 +511,46 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 }
 
+</style>
+<style>
+/* FINAL RESPONSIVE DROPDOWN CONTAINMENT FIX */
+@media (max-width: 1024px) {
+  .cs-site-header, .cs-header-inner, .cs-main-nav, .cs-nav-dropdown-wrap {
+    overflow: visible !important;
+  }
+
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: fixed !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: min(420px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 24px) !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+    transform: translateY(4px) !important;
+    z-index: 10000 !important;
+  }
+
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    transform: translateY(0) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
 </style>
 </head>
 <body class="cs-inline-15ad2b5321 cs-site-body">
@@ -848,11 +889,49 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 </script>
 
 <script>
-/* Responsive Features/Solutions dropdowns.
-   Desktop uses CSS hover; tablet/mobile use tap-to-toggle. */
+/* Responsive Features/Solutions dropdowns with viewport-safe positioning. */
 (function () {
   function initResponsiveNav() {
     var wraps = document.querySelectorAll('.cs-nav-dropdown-wrap');
+
+    function isSmallScreen() {
+      return window.matchMedia('(max-width: 1024px)').matches;
+    }
+
+    function positionDropdown(wrap) {
+      if (!isSmallScreen()) return;
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (!toggle || !dropdown || !wrap.classList.contains('is-open')) return;
+
+      var rect = toggle.getBoundingClientRect();
+      var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+      var gutter = window.innerWidth <= 480 ? 10 : 12;
+      var maxWidth = Math.max(0, viewportWidth - (gutter * 2));
+
+      dropdown.style.width = Math.min(420, maxWidth) + 'px';
+      dropdown.style.maxWidth = maxWidth + 'px';
+      dropdown.style.left = '0px';
+      dropdown.style.right = 'auto';
+      dropdown.style.top = (rect.bottom + 6) + 'px';
+
+      var dropdownWidth = Math.min(420, maxWidth);
+      var left = Math.max(gutter, Math.min(rect.left, viewportWidth - dropdownWidth - gutter));
+      dropdown.style.left = left + 'px';
+    }
+
+    function closeWrap(wrap) {
+      wrap.classList.remove('is-open');
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      if (dropdown) {
+        dropdown.style.left = '';
+        dropdown.style.top = '';
+        dropdown.style.width = '';
+        dropdown.style.maxWidth = '';
+      }
+    }
 
     wraps.forEach(function (wrap) {
       var toggle = wrap.querySelector('.cs-nav-toggle');
@@ -860,45 +939,41 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
       if (!toggle || !dropdown) return;
 
       toggle.addEventListener('click', function (event) {
-        if (window.matchMedia('(max-width: 1024px)').matches) {
-          event.preventDefault();
-          event.stopPropagation();
+        if (!isSmallScreen()) return;
+        event.preventDefault();
+        event.stopPropagation();
 
-          var willOpen = !wrap.classList.contains('is-open');
+        var willOpen = !wrap.classList.contains('is-open');
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
+          if (other !== wrap) closeWrap(other);
+        });
 
-          document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
-            if (other !== wrap) {
-              other.classList.remove('is-open');
-              var otherToggle = other.querySelector('.cs-nav-toggle');
-              if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
-            }
-          });
-
-          wrap.classList.toggle('is-open', willOpen);
-          toggle.setAttribute('aria-expanded', String(willOpen));
-        }
+        wrap.classList.toggle('is-open', willOpen);
+        toggle.setAttribute('aria-expanded', String(willOpen));
+        if (willOpen) requestAnimationFrame(function () { positionDropdown(wrap); });
+        else closeWrap(wrap);
       });
     });
 
     document.addEventListener('click', function (event) {
       if (!event.target.closest('.cs-nav-dropdown-wrap')) {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (wrap) {
-          wrap.classList.remove('is-open');
-          var toggle = wrap.querySelector('.cs-nav-toggle');
-          if (toggle) toggle.setAttribute('aria-expanded', 'false');
-        });
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       }
     });
 
     window.addEventListener('resize', function () {
-      if (!window.matchMedia('(max-width: 1024px)').matches) {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (wrap) {
-          wrap.classList.remove('is-open');
-          var toggle = wrap.querySelector('.cs-nav-toggle');
-          if (toggle) toggle.setAttribute('aria-expanded', 'false');
-        });
+      if (!isSmallScreen()) {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
+      } else {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
       }
     });
+
+    window.addEventListener('scroll', function () {
+      if (isSmallScreen()) {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
+      }
+    }, { passive: true });
   }
 
   if (document.readyState === 'loading') {
