@@ -683,6 +683,102 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 }
 
 </style>
+<style>
+/* FINAL VIEWPORT-SAFE DROPDOWN FIX */
+@media (max-width: 1024px) {
+  .cs-site-header, .cs-header-inner, .cs-main-nav, .cs-nav-dropdown-wrap {
+    overflow: visible !important;
+  }
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: fixed !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(420px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 24px) !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    transform: translateY(4px) !important;
+    z-index: 10000 !important;
+  }
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    transform: translateY(0) !important;
+  }
+}
+@media (max-width: 480px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
+</style>
+<style>
+/* MOBILE DROPDOWN: hard viewport bounds */
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden !important; }
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: fixed !important;
+    left: 10px !important;
+    right: 10px !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    transform: translateY(4px) !important;
+  }
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    transform: translateY(0) !important;
+  }
+}
+@media (max-width: 480px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
+  }
+}
+</style>
+
+<style id="final-nav-trigger-cleanup">
+/* Final cleanup: Features/Solutions triggers are text-only links on desktop + tablet. */
+.cs-nav-dropdown-wrap > .cs-nav-toggle,
+.cs-nav-dropdown-wrap > .cs-nav-toggle:hover,
+.cs-nav-dropdown-wrap > .cs-nav-toggle:active,
+.cs-nav-dropdown-wrap > .cs-nav-toggle:focus {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  box-shadow: none !important;
+  outline: none;
+  color: #374151 !important;
+  font: inherit !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: inherit !important;
+  padding: 8px 2px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cs-nav-dropdown-wrap > .cs-nav-toggle {
+    min-height: 0 !important;
+    width: auto !important;
+  }
+}
+</style>
 </head>
 <body class="cs-site-body">
 <!-- ==================== NAVIGATION ==================== -->
@@ -695,12 +791,12 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 </a>
 <!-- Navigation -->
 <nav class="cs-inline-97c1e423cf cs-main-nav">
-<a class="cs-inline-ad9ec55c31" href="index.html">Home</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-140a1aa94a cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-features">Features<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-91dbd449a4 cs-dropdown cs-fixed-large-width" id="nav-dd-features"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20socialproof.html"><div class="ddt cs-inline-a393e84ba6">Social Proof &amp; Urgency</div><div class="cs-inline-d3b4f4eb44">Live counters, inline reviews &amp; rotating widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20targeting.html"><div class="ddt cs-inline-a393e84ba6">Targeting &amp; Triggers</div><div class="cs-inline-d3b4f4eb44">Visibility rules, translation &amp; behavioral pop-ups</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20chat.html"><div class="ddt cs-inline-a393e84ba6">Direct Chat &amp; Lead Capture</div><div class="cs-inline-d3b4f4eb44">Messenger, WhatsApp, SMS &amp; request collectors</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20analytics.html"><div class="ddt cs-inline-a393e84ba6">Analytics &amp; Tracking</div><div class="cs-inline-d3b4f4eb44">Real-time maps, campaign stats &amp; button tracking</div></a></div></div><a class="cs-inline-b7bc293278" href="Pricing.html">Pricing</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-140a1aa94a cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-solutions">Solutions<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-4b2970594c cs-dropdown" id="nav-dd-solutions"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20ecommerce.html"><div class="ddt cs-inline-a393e84ba6">For E-commerce</div><div class="cs-inline-d3b4f4eb44">Save abandoned carts &amp; boost live sales</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20saas.html"><div class="ddt cs-inline-a393e84ba6">For SaaS &amp; Startups</div><div class="cs-inline-d3b4f4eb44">SPA optimization &amp; onboarding widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20agency.html"><div class="ddt cs-inline-a393e84ba6">For Agencies &amp; Marketers</div><div class="cs-inline-d3b4f4eb44">Team system, white-labeling &amp; QR deployment</div></a></div></div>
+<a class="cs-inline-b7bc293278" href="index.html">Home</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-140a1aa94a cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-features">Features<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-91dbd449a4 cs-dropdown cs-fixed-large-width" id="nav-dd-features"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20socialproof.html"><div class="ddt cs-inline-a393e84ba6">Social Proof &amp; Urgency</div><div class="cs-inline-d3b4f4eb44">Live counters, inline reviews &amp; rotating widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20targeting.html"><div class="ddt cs-inline-a393e84ba6">Targeting &amp; Triggers</div><div class="cs-inline-d3b4f4eb44">Visibility rules, translation &amp; behavioral pop-ups</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20chat.html"><div class="ddt cs-inline-a393e84ba6">Direct Chat &amp; Lead Capture</div><div class="cs-inline-d3b4f4eb44">Messenger, WhatsApp, SMS &amp; request collectors</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20analytics.html"><div class="ddt cs-inline-a393e84ba6">Analytics &amp; Tracking</div><div class="cs-inline-d3b4f4eb44">Real-time maps, campaign stats &amp; button tracking</div></a></div></div><a class="cs-inline-b7bc293278" href="Pricing.html">Pricing</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-140a1aa94a cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-solutions">Solutions<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-4b2970594c cs-dropdown" id="nav-dd-solutions"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20ecommerce.html"><div class="ddt cs-inline-a393e84ba6">For E-commerce</div><div class="cs-inline-d3b4f4eb44">Save abandoned carts &amp; boost live sales</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20saas.html"><div class="ddt cs-inline-a393e84ba6">For SaaS &amp; Startups</div><div class="cs-inline-d3b4f4eb44">SPA optimization &amp; onboarding widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20agency.html"><div class="ddt cs-inline-a393e84ba6">For Agencies &amp; Marketers</div><div class="cs-inline-d3b4f4eb44">Team system, white-labeling &amp; QR deployment</div></a></div></div>
 </nav>
 <!-- App Links -->
 <div class="cs-inline-c9a7335caf">
 <a class="cs-inline-5902129052" href="https://app.converstar.com/login">Sign In</a>
-<a class="cs-inline-5f595e4068" href="https://app.converstar.com/register">Get Started</a>
+<a class="btn-animated cs-inline-5f595e4068" href="https://app.converstar.com/register">Get Started</a>
 </div>
 </div>
 </header>
@@ -746,7 +842,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
       </p>
 <div class="cs-inline-9e824bfece">
 <a class="btn-animated cs-inline-51108425f9" href="https://app.converstar.com/register">Start Free Trial</a>
-<a class="btn-secondary-animated cs-inline-736a2d67b0" href="pricing.html">See Pricing</a>
+<a class="btn-secondary-animated cs-inline-736a2d67b0" href="Pricing.html">See Pricing</a>
 </div>
 <!-- Dashboard Mockup -->
 <div class="cs-inline-23ebe39e2c cs-container-1000 cs-fixed-large-width">
@@ -1238,36 +1334,11 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 </script>
 
 <script>
-/* Responsive Features/Solutions dropdowns with viewport-safe positioning. */
+/* Converstar responsive Features/Solutions navigation. */
 (function () {
   function initResponsiveNav() {
     var wraps = document.querySelectorAll('.cs-nav-dropdown-wrap');
-
-    function isSmallScreen() {
-      return window.matchMedia('(max-width: 1024px)').matches;
-    }
-
-    function positionDropdown(wrap) {
-      if (!isSmallScreen()) return;
-      var toggle = wrap.querySelector('.cs-nav-toggle');
-      var dropdown = wrap.querySelector('.cs-dropdown');
-      if (!toggle || !dropdown || !wrap.classList.contains('is-open')) return;
-
-      var rect = toggle.getBoundingClientRect();
-      var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-      var gutter = window.innerWidth <= 480 ? 8 : 10;
-      var dropdownWidth = Math.max(0, viewportWidth - (gutter * 2));
-
-      // On small screens always anchor the menu to the viewport edges.
-      // Do not use the trigger's horizontal position: it can push the
-      // dropdown off-screen when the trigger sits near the right edge.
-      dropdown.style.width = dropdownWidth + 'px';
-      dropdown.style.maxWidth = dropdownWidth + 'px';
-      dropdown.style.left = gutter + 'px';
-      dropdown.style.right = 'auto';
-      dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
-      dropdown.style.transform = 'translateY(0)';
-    }
+    var small = function () { return window.matchMedia('(max-width: 1024px)').matches; };
 
     function closeWrap(wrap) {
       wrap.classList.remove('is-open');
@@ -1283,25 +1354,45 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
       }
     }
 
+    function positionDropdown(wrap) {
+      if (!small() || !wrap.classList.contains('is-open')) return;
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (!toggle || !dropdown) return;
+      var rect = toggle.getBoundingClientRect();
+      var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+      var gutter = window.innerWidth <= 480 ? 8 : 12;
+      var width = Math.max(0, viewportWidth - (gutter * 2));
+      dropdown.style.width = width + 'px';
+      dropdown.style.maxWidth = width + 'px';
+      dropdown.style.left = gutter + 'px';
+      dropdown.style.right = 'auto';
+      dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
+      dropdown.style.transform = 'translateY(0)';
+    }
+
     wraps.forEach(function (wrap) {
       var toggle = wrap.querySelector('.cs-nav-toggle');
       var dropdown = wrap.querySelector('.cs-dropdown');
       if (!toggle || !dropdown) return;
 
+      toggle.setAttribute('aria-expanded', 'false');
       toggle.addEventListener('click', function (event) {
-        if (!isSmallScreen()) return;
+        if (!small()) return;
         event.preventDefault();
         event.stopPropagation();
-
         var willOpen = !wrap.classList.contains('is-open');
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
           if (other !== wrap) closeWrap(other);
         });
-
-        wrap.classList.toggle('is-open', willOpen);
-        toggle.setAttribute('aria-expanded', String(willOpen));
-        if (willOpen) requestAnimationFrame(function () { positionDropdown(wrap); });
-        else closeWrap(wrap);
+        if (willOpen) {
+          wrap.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          positionDropdown(wrap);
+          requestAnimationFrame(function () { positionDropdown(wrap); });
+        } else {
+          closeWrap(wrap);
+        }
       });
     });
 
@@ -1312,7 +1403,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
     });
 
     window.addEventListener('resize', function () {
-      if (!isSmallScreen()) {
+      if (!small()) {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       } else {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
@@ -1320,9 +1411,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
     });
 
     window.addEventListener('scroll', function () {
-      if (isSmallScreen()) {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
-      }
+      if (small()) document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
     }, { passive: true });
   }
 
@@ -1333,6 +1422,32 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 })();
 </script>
+
+
+<style id="cs-homepage-ui-final-fix">
+/* Homepage-only UI refinements: social notification + navbar Get Started hover. */
+@media (min-width: 1025px) {
+  .cs-site-header .cs-inline-5f595e4068.btn-animated:hover {
+    transform: translateY(-1.5px) !important;
+    filter: brightness(1.12) !important;
+    box-shadow: 0 6px 14px -3px rgba(139, 92, 246, 0.35) !important;
+  }
+  .cs-site-header .cs-inline-5f595e4068.btn-animated:active {
+    transform: translateY(0) !important;
+    filter: brightness(1.05) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Keep the social-proof notification on the opposite side of the screen. */
+  #cs-social-proof {
+    left: auto !important;
+    right: 16px !important;
+    bottom: 18px !important;
+    width: min(390px, calc(100vw - 32px)) !important;
+  }
+}
+</style>
 
 </body>
 </html>
