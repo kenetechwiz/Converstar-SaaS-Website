@@ -956,31 +956,24 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 <!-- Interactive JavaScript for Legal Document Tabs -->
 <script>
     function switchTab(tabName, btnElement) {
-      document.querySelectorAll('.legal-content-panel').forEach(function (panel) {
+      // Hide all panels
+      document.querySelectorAll('.legal-content-panel').forEach(panel => {
         panel.classList.remove('active');
       });
-
-      document.querySelectorAll('.legal-tab-btn').forEach(function (btn) {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
+      
+      // Reset all tab buttons styling
+      document.querySelectorAll('.legal-tab-btn').forEach(btn => {
+        btn.style.backgroundColor = 'transparent';
+        btn.style.color = '#71717A';
       });
 
-      var selectedPanel = document.getElementById(tabName + '-panel');
-      if (selectedPanel) selectedPanel.classList.add('active');
+      // Activate selected panel
+      document.getElementById(tabName + '-panel').classList.add('active');
 
-      if (btnElement) {
-        btnElement.classList.add('active');
-        btnElement.setAttribute('aria-selected', 'true');
-      }
+      // Style active button
+      btnElement.style.backgroundColor = '#7A33E2';
+      btnElement.style.color = '#FFFFFF';
     }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      var firstButton = document.querySelector('.legal-tab-btn');
-      if (firstButton) {
-        firstButton.classList.add('active');
-        firstButton.setAttribute('aria-selected', 'true');
-      }
-    });
   </script>
 <script>
 (function () {

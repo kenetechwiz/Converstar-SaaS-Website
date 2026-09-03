@@ -1201,11 +1201,14 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 </script>
 
 </script>
+</script>
 <script>
+/* Converstar responsive Features/Solutions navigation. */
 /* Converstar responsive Features/Solutions navigation. */
 (function () {
   function initResponsiveNav() {
     var wraps = document.querySelectorAll('.cs-nav-dropdown-wrap');
+    var small = function () { return window.matchMedia('(max-width: 1024px)').matches; };
     var small = function () { return window.matchMedia('(max-width: 1024px)').matches; };
 
     function closeWrap(wrap) {
@@ -1224,11 +1227,17 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 
     function positionDropdown(wrap) {
       if (!small() || !wrap.classList.contains('is-open')) return;
+      if (!small() || !wrap.classList.contains('is-open')) return;
       var toggle = wrap.querySelector('.cs-nav-toggle');
       var dropdown = wrap.querySelector('.cs-dropdown');
       if (!toggle || !dropdown) return;
+      if (!toggle || !dropdown) return;
       var rect = toggle.getBoundingClientRect();
       var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+      var gutter = window.innerWidth <= 480 ? 8 : 12;
+      var width = Math.max(0, viewportWidth - (gutter * 2));
+      dropdown.style.width = width + 'px';
+      dropdown.style.maxWidth = width + 'px';
       var gutter = window.innerWidth <= 480 ? 8 : 12;
       var width = Math.max(0, viewportWidth - (gutter * 2));
       dropdown.style.width = width + 'px';
@@ -1245,7 +1254,9 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
       if (!toggle || !dropdown) return;
 
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-expanded', 'false');
       toggle.addEventListener('click', function (event) {
+        if (!small()) return;
         if (!small()) return;
         event.preventDefault();
         event.stopPropagation();
@@ -1253,6 +1264,14 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
           if (other !== wrap) closeWrap(other);
         });
+        if (willOpen) {
+          wrap.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          positionDropdown(wrap);
+          requestAnimationFrame(function () { positionDropdown(wrap); });
+        } else {
+          closeWrap(wrap);
+        }
         if (willOpen) {
           wrap.classList.add('is-open');
           toggle.setAttribute('aria-expanded', 'true');
@@ -1272,6 +1291,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 
     window.addEventListener('resize', function () {
       if (!small()) {
+      if (!small()) {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       } else {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
@@ -1279,6 +1299,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
     });
 
     window.addEventListener('scroll', function () {
+      if (small()) document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
       if (small()) document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
     }, { passive: true });
   }
@@ -1361,8 +1382,87 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 
   if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initResponsiveNav);
+  } else {
+    initResponsiveNav();
+  }
+})();
+</script>
+
+<style id="pricing-toggle-visual-fix">
+/* Pricing toggle visual state — Pricing.html only. */
+#billing-toggle {
+  box-sizing: border-box !important;
+  position: relative !important;
+  cursor: pointer !important;
+  transition: background-color .16s ease, box-shadow .16s ease, transform .08s ease !important;
+}
+#billing-toggle:active { transform: scale(.97) !important; }
+#toggle-circle {
+  display: block !important;
+  position: absolute !important;
+  left: 3px !important;
+  top: 3px !important;
+  transition: transform .16s ease, box-shadow .16s ease !important;
+  will-change: transform;
+}
+#billing-toggle.is-monthly {
+  box-shadow: 0 0 0 2px rgba(139,92,246,.08), 0 0 10px rgba(139,92,246,.14) !important;
+}
+#billing-toggle.is-annual {
+  background-color: #8B5CF6 !important;
+  box-shadow: 0 0 0 2px rgba(139,92,246,.16), 0 0 14px rgba(139,92,246,.55), 0 0 28px rgba(139,92,246,.25) !important;
+}
+#billing-toggle.is-annual #toggle-circle {
+  transform: translateX(22px) !important;
+  box-shadow: 0 0 8px rgba(255,255,255,.85), 0 0 14px rgba(139,92,246,.65) !important;
+}
+#billing-toggle.is-monthly #toggle-circle,
+#billing-toggle:not(.is-annual) #toggle-circle { transform: translateX(0) !important; }
+#label-monthly.is-active, #label-annual.is-active { color: #0F172A !important; font-weight: 700 !important; }
+</style>
+<script>
+/* Pricing billing toggle: immediate click response + active visual state. */
+(function () {
+  function initBillingToggle() {
+    var toggleBtn = document.getElementById('billing-toggle');
+    var toggleCircle = document.getElementById('toggle-circle');
+    if (!toggleBtn || !toggleCircle || toggleBtn.dataset.billingReady === 'true') return;
+    toggleBtn.dataset.billingReady = 'true';
+
+    var labelMonthly = document.getElementById('label-monthly');
+    var labelAnnual = document.getElementById('label-annual');
+    var prices = document.querySelectorAll('.price-val');
+    var periods = document.querySelectorAll('.period-val');
+
+    function setBillingState(isAnnual) {
+      toggleBtn.classList.toggle('is-annual', isAnnual);
+      toggleBtn.classList.toggle('is-monthly', !isAnnual);
+      toggleBtn.setAttribute('aria-pressed', String(isAnnual));
+      toggleBtn.setAttribute('data-billing', isAnnual ? 'annual' : 'monthly');
+      if (labelMonthly) labelMonthly.classList.toggle('is-active', !isAnnual);
+      if (labelAnnual) labelAnnual.classList.toggle('is-active', isAnnual);
+      prices.forEach(function (el) {
+        el.textContent = el.getAttribute(isAnnual ? 'data-annual' : 'data-monthly') || el.textContent;
+      });
+      periods.forEach(function (el) {
+        el.textContent = isAnnual ? '/mo (billed annually)' : '/mo';
+      });
+    }
+
+    toggleBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      setBillingState(!toggleBtn.classList.contains('is-annual'));
+    });
+
+    setBillingState(false);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBillingToggle, { once: true });
     document.addEventListener('DOMContentLoaded', initBillingToggle, { once: true });
   } else {
+    initBillingToggle();
     initBillingToggle();
   }
 })();
