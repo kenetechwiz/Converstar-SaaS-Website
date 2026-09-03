@@ -544,36 +544,6 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 }
 </style>
 
-<style>
-/* MOBILE DROPDOWN: hard viewport bounds */
-@media (max-width: 768px) {
-  html, body { overflow-x: hidden !important; }
-  .cs-nav-dropdown-wrap > .cs-dropdown {
-    position: fixed !important;
-    left: 10px !important;
-    right: 10px !important;
-    top: auto !important;
-    bottom: auto !important;
-    width: auto !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-    margin: 0 !important;
-    transform: translateY(4px) !important;
-  }
-  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
-    transform: translateY(0) !important;
-  }
-}
-@media (max-width: 480px) {
-  .cs-nav-dropdown-wrap > .cs-dropdown {
-    left: 8px !important;
-    right: 8px !important;
-    width: auto !important;
-  }
-}
-</style>
-
 <style id="final-nav-trigger-cleanup">
 /* Final cleanup: Features/Solutions triggers are text-only links on desktop + tablet. */
 .cs-nav-dropdown-wrap > .cs-nav-toggle,
@@ -607,6 +577,107 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   .cs-nav-dropdown-wrap > .cs-nav-toggle {
     min-height: 0 !important;
     width: auto !important;
+  }
+}
+</style>
+<style>
+/* Mobile navbar dropdown containment fix */
+@media (max-width: 768px) {
+  nav .dropdown,
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown,
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    box-sizing: border-box;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    left: 0 !important;
+    right: auto !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  /* When the dropdown is nested in a right-aligned wrapper, anchor it to
+     the viewport-safe edge rather than allowing it to extend off-screen. */
+  nav .dropdown.align-right > .dropdown-menu,
+  nav .dropdown.right > .dropdown-menu,
+  nav .dropdown-menu.align-right,
+  nav .dropdown-content.align-right,
+  .navbar .dropdown.align-right > .dropdown-menu,
+  .navbar .dropdown.right > .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  nav .dropdown-menu *,
+  nav .dropdown-content *,
+  nav .submenu *,
+  nav [role="menu"] *,
+  .navbar .dropdown-menu *,
+  .navbar .dropdown-content *,
+  .navbar .submenu *,
+  .navbar [role="menu"] * {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Preserve normal desktop positioning; only prevent oversized menus. */
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    max-width: min(90vw, 640px);
+    box-sizing: border-box;
+  }
+}
+</style>
+<style>
+/* Mobile/tablet Features & Solutions dropdown fix */
+@media (max-width: 1024px) {
+  nav .dropdown, .navbar .dropdown { position: relative !important; }
+  nav .dropdown-menu, nav .dropdown-content, nav [role="menu"], nav .submenu,
+  .navbar .dropdown-menu, .navbar .dropdown-content, .navbar [role="menu"], .navbar .submenu {
+    display: none; position: absolute !important; z-index: 9999 !important;
+    top: 100% !important; left: 0 !important; right: auto !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important; min-width: 0 !important;
+    max-height: calc(100vh - 90px); overflow-y: auto; overflow-x: hidden;
+  }
+  nav .dropdown.open > .dropdown-menu, nav .dropdown.open > .dropdown-content,
+  nav .dropdown.open > [role="menu"], nav .dropdown.open > .submenu,
+  .navbar .dropdown.open > .dropdown-menu, .navbar .dropdown.open > .dropdown-content,
+  .navbar .dropdown.open > [role="menu"], .navbar .dropdown.open > .submenu,
+  nav .dropdown.active > .dropdown-menu, nav .dropdown.active > .dropdown-content,
+  .navbar .dropdown.active > .dropdown-menu, .navbar .dropdown.active > .dropdown-content,
+  nav .dropdown:focus-within > .dropdown-menu, nav .dropdown:focus-within > .dropdown-content,
+  .navbar .dropdown:focus-within > .dropdown-menu, .navbar .dropdown:focus-within > .dropdown-content { display: block !important; }
+  nav .dropdown-menu.show, nav .dropdown-content.show, .navbar .dropdown-menu.show, .navbar .dropdown-content.show { display:block !important; }
+}
+@media (max-width: 767px) {
+  nav .dropdown-menu, nav .dropdown-content, nav [role="menu"], nav .submenu,
+  .navbar .dropdown-menu, .navbar .dropdown-content, .navbar [role="menu"], .navbar .submenu {
+    position: fixed !important; top: auto !important; left: 12px !important; right: 12px !important;
+    width: auto !important; max-width: none !important;
   }
 }
 </style>
@@ -947,37 +1018,11 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 </script>
 
 <script>
-/* Responsive Features/Solutions dropdowns with viewport-safe positioning. */
-/* Responsive Features/Solutions dropdowns with viewport-safe positioning. */
+/* Converstar responsive Features/Solutions navigation. */
 (function () {
   function initResponsiveNav() {
     var wraps = document.querySelectorAll('.cs-nav-dropdown-wrap');
-
-    function isSmallScreen() {
-      return window.matchMedia('(max-width: 1024px)').matches;
-    }
-
-    function positionDropdown(wrap) {
-      if (!isSmallScreen()) return;
-      var toggle = wrap.querySelector('.cs-nav-toggle');
-      var dropdown = wrap.querySelector('.cs-dropdown');
-      if (!toggle || !dropdown || !wrap.classList.contains('is-open')) return;
-
-      var rect = toggle.getBoundingClientRect();
-      var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-      var gutter = window.innerWidth <= 480 ? 8 : 10;
-      var dropdownWidth = Math.max(0, viewportWidth - (gutter * 2));
-
-      // On small screens always anchor the menu to the viewport edges.
-      // Do not use the trigger's horizontal position: it can push the
-      // dropdown off-screen when the trigger sits near the right edge.
-      dropdown.style.width = dropdownWidth + 'px';
-      dropdown.style.maxWidth = dropdownWidth + 'px';
-      dropdown.style.left = gutter + 'px';
-      dropdown.style.right = 'auto';
-      dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
-      dropdown.style.transform = 'translateY(0)';
-    }
+    var small = function () { return window.matchMedia('(max-width: 1024px)').matches; };
 
     function closeWrap(wrap) {
       wrap.classList.remove('is-open');
@@ -993,44 +1038,21 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
       }
     }
 
-    function isSmallScreen() {
-      return window.matchMedia('(max-width: 1024px)').matches;
-    }
-
     function positionDropdown(wrap) {
-      if (!isSmallScreen()) return;
+      if (!small() || !wrap.classList.contains('is-open')) return;
       var toggle = wrap.querySelector('.cs-nav-toggle');
       var dropdown = wrap.querySelector('.cs-dropdown');
-      if (!toggle || !dropdown || !wrap.classList.contains('is-open')) return;
-
+      if (!toggle || !dropdown) return;
       var rect = toggle.getBoundingClientRect();
       var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-      var gutter = window.innerWidth <= 480 ? 8 : 10;
-      var dropdownWidth = Math.max(0, viewportWidth - (gutter * 2));
-
-      // On small screens always anchor the menu to the viewport edges.
-      // Do not use the trigger's horizontal position: it can push the
-      // dropdown off-screen when the trigger sits near the right edge.
-      dropdown.style.width = dropdownWidth + 'px';
-      dropdown.style.maxWidth = dropdownWidth + 'px';
+      var gutter = window.innerWidth <= 480 ? 8 : 12;
+      var width = Math.max(0, viewportWidth - (gutter * 2));
+      dropdown.style.width = width + 'px';
+      dropdown.style.maxWidth = width + 'px';
       dropdown.style.left = gutter + 'px';
       dropdown.style.right = 'auto';
       dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
       dropdown.style.transform = 'translateY(0)';
-    }
-
-    function closeWrap(wrap) {
-      wrap.classList.remove('is-open');
-      var toggle = wrap.querySelector('.cs-nav-toggle');
-      var dropdown = wrap.querySelector('.cs-dropdown');
-      if (toggle) toggle.setAttribute('aria-expanded', 'false');
-      if (dropdown) {
-        dropdown.style.left = '';
-        dropdown.style.top = '';
-        dropdown.style.width = '';
-        dropdown.style.maxWidth = '';
-        dropdown.style.transform = '';
-      }
     }
 
     wraps.forEach(function (wrap) {
@@ -1038,43 +1060,34 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
       var dropdown = wrap.querySelector('.cs-dropdown');
       if (!toggle || !dropdown) return;
 
+      toggle.setAttribute('aria-expanded', 'false');
       toggle.addEventListener('click', function (event) {
-        if (!isSmallScreen()) return;
+        if (!small()) return;
         event.preventDefault();
         event.stopPropagation();
-        if (!isSmallScreen()) return;
-        event.preventDefault();
-        event.stopPropagation();
-
         var willOpen = !wrap.classList.contains('is-open');
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
           if (other !== wrap) closeWrap(other);
         });
-        var willOpen = !wrap.classList.contains('is-open');
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
-          if (other !== wrap) closeWrap(other);
-        });
-
-        wrap.classList.toggle('is-open', willOpen);
-        toggle.setAttribute('aria-expanded', String(willOpen));
-        if (willOpen) requestAnimationFrame(function () { positionDropdown(wrap); });
-        else closeWrap(wrap);
-        wrap.classList.toggle('is-open', willOpen);
-        toggle.setAttribute('aria-expanded', String(willOpen));
-        if (willOpen) requestAnimationFrame(function () { positionDropdown(wrap); });
-        else closeWrap(wrap);
+        if (willOpen) {
+          wrap.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          positionDropdown(wrap);
+          requestAnimationFrame(function () { positionDropdown(wrap); });
+        } else {
+          closeWrap(wrap);
+        }
       });
     });
 
     document.addEventListener('click', function (event) {
       if (!event.target.closest('.cs-nav-dropdown-wrap')) {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       }
     });
 
     window.addEventListener('resize', function () {
-      if (!isSmallScreen()) {
+      if (!small()) {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       } else {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
@@ -1082,21 +1095,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
     });
 
     window.addEventListener('scroll', function () {
-      if (isSmallScreen()) {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
-      }
-    }, { passive: true });
-      if (!isSmallScreen()) {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
-      } else {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
-      }
-    });
-
-    window.addEventListener('scroll', function () {
-      if (isSmallScreen()) {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
-      }
+      if (small()) document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
     }, { passive: true });
   }
 
