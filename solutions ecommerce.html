@@ -512,82 +512,30 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 }
 
-
-/* Borderless navigation dropdown triggers — match Home/Pricing text links. */
-.cs-nav-toggle {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  border: 0 !important;
-  outline: none;
-  background: transparent !important;
-  box-shadow: none !important;
-  font: inherit !important;
-  color: #374151 !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.1px !important;
-  line-height: inherit !important;
-  padding: 8px 2px !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important;
-  cursor: pointer !important;
-  text-decoration: none !important;
-}
-.cs-nav-toggle:hover,
-.cs-nav-toggle:active {
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-.cs-nav-toggle:focus {
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-.cs-nav-toggle:focus-visible {
-  outline: 2px solid rgba(139, 92, 246, 0.45);
-  outline-offset: 3px;
-  border-radius: 4px !important;
-}
-
 </style>
 <style>
-/* FINAL RESPONSIVE DROPDOWN CONTAINMENT FIX */
+/* FINAL VIEWPORT-SAFE DROPDOWN FIX */
 @media (max-width: 1024px) {
   .cs-site-header, .cs-header-inner, .cs-main-nav, .cs-nav-dropdown-wrap {
     overflow: visible !important;
   }
-
   .cs-nav-dropdown-wrap > .cs-dropdown {
     position: fixed !important;
     top: auto !important;
-    left: auto !important;
     right: auto !important;
+    bottom: auto !important;
     width: min(420px, calc(100vw - 24px)) !important;
     max-width: calc(100vw - 24px) !important;
     max-height: calc(100vh - 24px) !important;
-    overflow-y: auto !important;
+    margin: 0 !important;
     box-sizing: border-box !important;
     transform: translateY(4px) !important;
     z-index: 10000 !important;
   }
-
   .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
     transform: translateY(0) !important;
   }
 }
-
-@media (max-width: 768px) {
-  .cs-nav-dropdown-wrap > .cs-dropdown {
-    width: calc(100vw - 24px) !important;
-    max-width: calc(100vw - 24px) !important;
-  }
-}
-
 @media (max-width: 480px) {
   .cs-nav-dropdown-wrap > .cs-dropdown {
     width: calc(100vw - 20px) !important;
@@ -595,43 +543,33 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 }
 </style>
-<style>
-/* FINAL RESPONSIVE DROPDOWN CONTAINMENT FIX */
-@media (max-width: 1024px) {
-  .cs-site-header, .cs-header-inner, .cs-main-nav, .cs-nav-dropdown-wrap {
-    overflow: visible !important;
-  }
 
+<style>
+/* MOBILE DROPDOWN: hard viewport bounds */
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden !important; }
   .cs-nav-dropdown-wrap > .cs-dropdown {
     position: fixed !important;
+    left: 10px !important;
+    right: 10px !important;
     top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    width: min(420px, calc(100vw - 24px)) !important;
-    max-width: calc(100vw - 24px) !important;
-    max-height: calc(100vh - 24px) !important;
-    overflow-y: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
     box-sizing: border-box !important;
+    margin: 0 !important;
     transform: translateY(4px) !important;
-    z-index: 10000 !important;
   }
-
   .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
     transform: translateY(0) !important;
   }
 }
-
-@media (max-width: 768px) {
-  .cs-nav-dropdown-wrap > .cs-dropdown {
-    width: calc(100vw - 24px) !important;
-    max-width: calc(100vw - 24px) !important;
-  }
-}
-
 @media (max-width: 480px) {
   .cs-nav-dropdown-wrap > .cs-dropdown {
-    width: calc(100vw - 20px) !important;
-    max-width: calc(100vw - 20px) !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
   }
 }
 </style>
@@ -960,18 +898,18 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 
       var rect = toggle.getBoundingClientRect();
       var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-      var gutter = window.innerWidth <= 480 ? 10 : 12;
-      var maxWidth = Math.max(0, viewportWidth - (gutter * 2));
+      var gutter = window.innerWidth <= 480 ? 8 : 10;
+      var dropdownWidth = Math.max(0, viewportWidth - (gutter * 2));
 
-      dropdown.style.width = Math.min(420, maxWidth) + 'px';
-      dropdown.style.maxWidth = maxWidth + 'px';
-      dropdown.style.left = '0px';
+      // On small screens always anchor the menu to the viewport edges.
+      // Do not use the trigger's horizontal position: it can push the
+      // dropdown off-screen when the trigger sits near the right edge.
+      dropdown.style.width = dropdownWidth + 'px';
+      dropdown.style.maxWidth = dropdownWidth + 'px';
+      dropdown.style.left = gutter + 'px';
       dropdown.style.right = 'auto';
-      dropdown.style.top = (rect.bottom + 6) + 'px';
-
-      var dropdownWidth = Math.min(420, maxWidth);
-      var left = Math.max(gutter, Math.min(rect.left, viewportWidth - dropdownWidth - gutter));
-      dropdown.style.left = left + 'px';
+      dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
+      dropdown.style.transform = 'translateY(0)';
     }
 
     function closeWrap(wrap) {
@@ -984,6 +922,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
         dropdown.style.top = '';
         dropdown.style.width = '';
         dropdown.style.maxWidth = '';
+        dropdown.style.transform = '';
       }
     }
 
