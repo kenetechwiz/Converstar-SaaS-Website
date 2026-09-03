@@ -405,6 +405,7 @@ nav a:hover, header a:hover { transform: translateY(-1px); }
 .cs-inline-464b28cd89 { display: flex !important; flex-direction: column !important; gap: 10px !important; }
 .cs-inline-2604384721 { color:#6B7280 !important; text-decoration:none !important; font-size:13.5px !important; font-weight:500 !important; display:inline-block !important; width:fit-content !important; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease !important; }
 .cs-inline-2604384721:hover, .cs-inline-2604384721:active, .cs-inline-2604384721:focus-visible { color:#8B5CF6 !important; text-shadow:0 0 10px rgba(139,92,246,.65), 0 0 20px rgba(139,92,246,.35) !important; transform:translateY(-1px) !important; }
+.cs-inline-2604384721:hover, .cs-inline-2604384721:active, .cs-inline-2604384721:focus-visible { color:#8B5CF6 !important; text-shadow:0 0 10px rgba(139,92,246,.65), 0 0 20px rgba(139,92,246,.35) !important; transform:translateY(-1px) !important; }
 .cs-inline-95a317ba5b { border-top: 1px solid #F3F4F6 !important; padding-top: 24px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; }
 .cs-inline-6525114898 { font-size: 12px !important; color: #9CA3AF !important; }
 .cs-inline-b6005b36ad { color:#6B7280 !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; text-decoration:none !important; transition: color 0.25s ease, filter 0.25s ease, transform 0.25s ease !important; }
@@ -683,6 +684,36 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 }
 
 </style>
+<style>
+/* FINAL VIEWPORT-SAFE DROPDOWN FIX */
+@media (max-width: 1024px) {
+  .cs-site-header, .cs-header-inner, .cs-main-nav, .cs-nav-dropdown-wrap {
+    overflow: visible !important;
+  }
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: fixed !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(420px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 24px) !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    transform: translateY(4px) !important;
+    z-index: 10000 !important;
+  }
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    transform: translateY(0) !important;
+  }
+}
+@media (max-width: 480px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
+</style>
 </head>
 <body class="cs-site-body">
 <!-- ==================== NAVIGATION ==================== -->
@@ -700,7 +731,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 <!-- App Links -->
 <div class="cs-inline-c9a7335caf">
 <a class="cs-inline-5902129052" href="https://app.converstar.com/login">Sign In</a>
-<a class="cs-inline-5f595e4068" href="https://app.converstar.com/register">Get Started</a>
+<a class="btn-animated cs-inline-5f595e4068" href="https://app.converstar.com/register">Get Started</a>
 </div>
 </div>
 </header>
@@ -1238,36 +1269,11 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 </script>
 
 <script>
-/* Responsive Features/Solutions dropdowns with viewport-safe positioning. */
+/* Converstar responsive Features/Solutions navigation. */
 (function () {
   function initResponsiveNav() {
     var wraps = document.querySelectorAll('.cs-nav-dropdown-wrap');
-
-    function isSmallScreen() {
-      return window.matchMedia('(max-width: 1024px)').matches;
-    }
-
-    function positionDropdown(wrap) {
-      if (!isSmallScreen()) return;
-      var toggle = wrap.querySelector('.cs-nav-toggle');
-      var dropdown = wrap.querySelector('.cs-dropdown');
-      if (!toggle || !dropdown || !wrap.classList.contains('is-open')) return;
-
-      var rect = toggle.getBoundingClientRect();
-      var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-      var gutter = window.innerWidth <= 480 ? 8 : 10;
-      var dropdownWidth = Math.max(0, viewportWidth - (gutter * 2));
-
-      // On small screens always anchor the menu to the viewport edges.
-      // Do not use the trigger's horizontal position: it can push the
-      // dropdown off-screen when the trigger sits near the right edge.
-      dropdown.style.width = dropdownWidth + 'px';
-      dropdown.style.maxWidth = dropdownWidth + 'px';
-      dropdown.style.left = gutter + 'px';
-      dropdown.style.right = 'auto';
-      dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
-      dropdown.style.transform = 'translateY(0)';
-    }
+    var small = function () { return window.matchMedia('(max-width: 1024px)').matches; };
 
     function closeWrap(wrap) {
       wrap.classList.remove('is-open');
@@ -1283,25 +1289,45 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
       }
     }
 
+    function positionDropdown(wrap) {
+      if (!small() || !wrap.classList.contains('is-open')) return;
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (!toggle || !dropdown) return;
+      var rect = toggle.getBoundingClientRect();
+      var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+      var gutter = window.innerWidth <= 480 ? 8 : 12;
+      var width = Math.max(0, viewportWidth - (gutter * 2));
+      dropdown.style.width = width + 'px';
+      dropdown.style.maxWidth = width + 'px';
+      dropdown.style.left = gutter + 'px';
+      dropdown.style.right = 'auto';
+      dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
+      dropdown.style.transform = 'translateY(0)';
+    }
+
     wraps.forEach(function (wrap) {
       var toggle = wrap.querySelector('.cs-nav-toggle');
       var dropdown = wrap.querySelector('.cs-dropdown');
       if (!toggle || !dropdown) return;
 
+      toggle.setAttribute('aria-expanded', 'false');
       toggle.addEventListener('click', function (event) {
-        if (!isSmallScreen()) return;
+        if (!small()) return;
         event.preventDefault();
         event.stopPropagation();
-
         var willOpen = !wrap.classList.contains('is-open');
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
           if (other !== wrap) closeWrap(other);
         });
-
-        wrap.classList.toggle('is-open', willOpen);
-        toggle.setAttribute('aria-expanded', String(willOpen));
-        if (willOpen) requestAnimationFrame(function () { positionDropdown(wrap); });
-        else closeWrap(wrap);
+        if (willOpen) {
+          wrap.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          positionDropdown(wrap);
+          requestAnimationFrame(function () { positionDropdown(wrap); });
+        } else {
+          closeWrap(wrap);
+        }
       });
     });
 
@@ -1312,7 +1338,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
     });
 
     window.addEventListener('resize', function () {
-      if (!isSmallScreen()) {
+      if (!small()) {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       } else {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
@@ -1320,9 +1346,7 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
     });
 
     window.addEventListener('scroll', function () {
-      if (isSmallScreen()) {
-        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
-      }
+      if (small()) document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
     }, { passive: true });
   }
 
@@ -1333,6 +1357,32 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 })();
 </script>
+
+
+<style id="cs-homepage-ui-final-fix">
+/* Homepage-only UI refinements: social notification + navbar Get Started hover. */
+@media (min-width: 1025px) {
+  .cs-site-header .cs-inline-5f595e4068.btn-animated:hover {
+    transform: translateY(-1.5px) !important;
+    filter: brightness(1.12) !important;
+    box-shadow: 0 6px 14px -3px rgba(139, 92, 246, 0.35) !important;
+  }
+  .cs-site-header .cs-inline-5f595e4068.btn-animated:active {
+    transform: translateY(0) !important;
+    filter: brightness(1.05) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Keep the social-proof notification on the opposite side of the screen. */
+  #cs-social-proof {
+    left: auto !important;
+    right: 16px !important;
+    bottom: 18px !important;
+    width: min(390px, calc(100vw - 32px)) !important;
+  }
+}
+</style>
 
 </body>
 </html>
