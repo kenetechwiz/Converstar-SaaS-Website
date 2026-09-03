@@ -1457,5 +1457,41 @@ document.addEventListener('DOMContentLoaded', function () {
   setBillingState(false);
 });
 </script>
+
+
+</script>
+<script>
+/* Pricing billing toggle: class-driven visual state + price updates. */
+document.addEventListener('DOMContentLoaded', function () {
+  var toggleBtn = document.getElementById('billing-toggle');
+  var toggleCircle = document.getElementById('toggle-circle');
+  var labelMonthly = document.getElementById('label-monthly');
+  var labelAnnual = document.getElementById('label-annual');
+  var priceElements = document.querySelectorAll('.price-val');
+  var periodElements = document.querySelectorAll('.period-val');
+
+  if (!toggleBtn || !toggleCircle) return;
+
+  function setBillingState(isAnnual) {
+    toggleBtn.classList.toggle('is-annual', isAnnual);
+    toggleBtn.setAttribute('aria-pressed', String(isAnnual));
+    toggleBtn.setAttribute('data-billing', isAnnual ? 'annual' : 'monthly');
+    if (labelMonthly) labelMonthly.classList.toggle('is-active', !isAnnual);
+    if (labelAnnual) labelAnnual.classList.toggle('is-active', isAnnual);
+    priceElements.forEach(function (el) {
+      el.textContent = el.getAttribute(isAnnual ? 'data-annual' : 'data-monthly');
+    });
+    periodElements.forEach(function (el) {
+      el.textContent = isAnnual ? '/mo (billed annually)' : '/mo';
+    });
+  }
+
+  toggleBtn.addEventListener('click', function () {
+    setBillingState(!toggleBtn.classList.contains('is-annual'));
+  });
+
+  setBillingState(false);
+});
+</script>
 </body>
 </html>
