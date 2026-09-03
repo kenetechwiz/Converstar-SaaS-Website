@@ -1500,11 +1500,23 @@ nav .dropdown-toggle:focus {
     document.addEventListener('click', function (event) {
       if (!event.target.closest('.cs-nav-dropdown-wrap')) {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       }
     });
 
     window.addEventListener('resize', function () {
       if (!small()) {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
+      } else {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
+      }
+    });
+
+    window.addEventListener('scroll', function () {
+      if (small()) document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
+    }, { passive: true });
+      if (!isSmallScreen()) {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
       } else {
         document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
