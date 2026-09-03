@@ -535,6 +535,88 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   }
 }
 
+
+/* Borderless navigation dropdown triggers — match Home/Pricing text links. */
+.cs-nav-toggle {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border: 0 !important;
+  outline: none;
+  background: transparent !important;
+  box-shadow: none !important;
+  font: inherit !important;
+  color: #374151 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.1px !important;
+  line-height: inherit !important;
+  padding: 8px 2px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+.cs-nav-toggle:hover,
+.cs-nav-toggle:active {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.cs-nav-toggle:focus {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.cs-nav-toggle:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.45);
+  outline-offset: 3px;
+  border-radius: 4px !important;
+}
+
+</style>
+<style>
+/* FINAL RESPONSIVE DROPDOWN CONTAINMENT FIX */
+@media (max-width: 1024px) {
+  .cs-site-header, .cs-header-inner, .cs-main-nav, .cs-nav-dropdown-wrap {
+    overflow: visible !important;
+  }
+
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: fixed !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: min(420px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 24px) !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+    transform: translateY(4px) !important;
+    z-index: 10000 !important;
+  }
+
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    transform: translateY(0) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
 </style>
 <style>
 /* FINAL RESPONSIVE DROPDOWN CONTAINMENT FIX */
