@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html class="cs-inline-1d513610cd" lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -26,6 +27,18 @@
       }
       100% {
         background-position: 200% 0;
+      }
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(122, 51, 226, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 14px rgba(122, 51, 226, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(122, 51, 226, 0);
       }
     }
 
@@ -60,6 +73,7 @@
       animation: shimmer 3s infinite;
     }
 
+    /* Tab Switch Transition */
     .legal-content-panel {
       display: none;
       animation: fadeInUp 0.5s ease forwards;
@@ -78,20 +92,27 @@ body>section:nth-of-type(4){animation-delay:.12s}
 .interactive-btn:hover,.pricing-card:hover,.floating-mockup:hover,.feature-card:hover{transform:translateY(-3px)}
 @keyframes csPageSection{from{opacity:.001;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}body>section{animation:none}.interactive-btn,.pricing-card,.floating-mockup,.feature-card{transition:none}}
-</style>
-<style>
+</style><style>
+
+/* Converstar global motion layer */
 :root { --motion-ease: cubic-bezier(.22, 1, .36, 1); }
+
 html { scroll-behavior: smooth; }
+
 body { animation: pageEnter .55s var(--motion-ease) both; }
+
 @keyframes pageEnter {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
+/* Scroll reveals */
 .motion-reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity .7s var(--motion-ease), transform .7s var(--motion-ease);
+  transition:
+    opacity .7s var(--motion-ease),
+    transform .7s var(--motion-ease);
   transition-delay: var(--motion-delay, 0ms);
   will-change: opacity, transform;
 }
@@ -100,6 +121,7 @@ body { animation: pageEnter .55s var(--motion-ease) both; }
   transform: none;
 }
 
+/* Hero entrance */
 .motion-hero {
   animation: heroIn .85s var(--motion-ease) .08s both;
 }
@@ -108,8 +130,12 @@ body { animation: pageEnter .55s var(--motion-ease) both; }
   to { opacity: 1; transform: none; }
 }
 
+/* Interactive lift */
 .motion-interactive {
-  transition: transform .25s var(--motion-ease), box-shadow .25s var(--motion-ease), filter .25s var(--motion-ease);
+  transition:
+    transform .25s var(--motion-ease),
+    box-shadow .25s var(--motion-ease),
+    filter .25s var(--motion-ease);
 }
 .motion-interactive:hover {
   transform: translateY(-4px);
@@ -119,6 +145,7 @@ body { animation: pageEnter .55s var(--motion-ease) both; }
   transform: translateY(-1px) scale(.99);
 }
 
+/* Image/card micro motion */
 .motion-float {
   animation: gentleFloat 5s ease-in-out infinite;
 }
@@ -127,20 +154,33 @@ body { animation: pageEnter .55s var(--motion-ease) both; }
   50% { transform: translateY(-7px); }
 }
 
+/* Navigation polish */
 nav a, header a, button, [role="button"] {
-  transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s var(--motion-ease), box-shadow .2s ease;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease,
+              transform .2s var(--motion-ease), box-shadow .2s ease;
 }
 nav a:hover, header a:hover { transform: translateY(-1px); }
 
+/* Respect accessibility preferences */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  body, .motion-hero, .motion-float { animation: none !important; }
-  .motion-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  nav a, header a, button, [role="button"], .motion-interactive { transition: none !important; }
+  body, .motion-hero, .motion-float {
+    animation: none !important;
+  }
+  .motion-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  nav a, header a, button, [role="button"], .motion-interactive {
+    transition: none !important;
+  }
 }
+
 </style>
 
 <style id="cs-refactored-inline-styles">
+/* Original inline declarations moved into the stylesheet to preserve desktop rendering. */
 .cs-inline-1d513610cd { scroll-behavior: smooth !important; }
 .cs-inline-39d15274db { margin: 0 !important; padding: 0 !important; font-family: 'Inter', 'Poppins', sans-serif !important; background-color: #FAFAFA !important; color: #18181B !important; -webkit-font-smoothing: antialiased !important; }
 .cs-inline-eb63c261dc { position: sticky !important; top: 0 !important; z-index: 1000 !important; background-color: #FFFFFF !important; border-bottom: 1px solid #E5E7EB !important; }
@@ -201,13 +241,15 @@ nav a:hover, header a:hover { transform: translateY(-1px); }
 .cs-inline-993d8945c4 { font-size: 14px !important; font-weight: 700 !important; color: #111827 !important; margin: 0 0 16px 0 !important; }
 .cs-inline-464b28cd89 { display: flex !important; flex-direction: column !important; gap: 10px !important; }
 .cs-inline-2604384721 { color:#6B7280 !important; text-decoration:none !important; font-size:13.5px !important; font-weight:500 !important; display:inline-block !important; width:fit-content !important; transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease !important; }
-.cs-inline-2604384721:hover { color:#8B5CF6 !important; transform:translateY(-1px) !important; }
+.cs-inline-2604384721:hover, .cs-inline-2604384721:active, .cs-inline-2604384721:focus-visible { color:#8B5CF6 !important; text-shadow:0 0 10px rgba(139,92,246,.65), 0 0 20px rgba(139,92,246,.35) !important; transform:translateY(-1px) !important; }
+.cs-inline-2604384721:hover, .cs-inline-2604384721:active, .cs-inline-2604384721:focus-visible { color:#8B5CF6 !important; text-shadow:0 0 10px rgba(139,92,246,.65), 0 0 20px rgba(139,92,246,.35) !important; transform:translateY(-1px) !important; }
 .cs-inline-95a317ba5b { border-top: 1px solid #F3F4F6 !important; padding-top: 24px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; }
 .cs-inline-6525114898 { font-size: 12px !important; color: #9CA3AF !important; }
-.cs-inline-b6005b36ad { color:#6B7280 !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; text-decoration:none !important; }
+.cs-inline-b6005b36ad { color:#6B7280 !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; text-decoration:none !important; transition: color 0.25s ease, filter 0.25s ease, transform 0.25s ease !important; }
 .cs-inline-a3bf3580dd { width:18px !important; height:18px !important; fill:currentColor !important; display:block !important; }
 </style>
 <style id="cs-responsive-refactor">
+/* Responsive refactor: desktop rules above remain unchanged. */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { max-width: 100%; overflow-x: hidden; }
 img, svg, video, canvas, iframe { max-width: 100%; }
@@ -216,12 +258,13 @@ img, svg, video, canvas, iframe { max-width: 100%; }
 .cs-fixed-large-width { max-width: 100%; }
 .cs-grid-4, .cs-grid-3, .cs-grid-2, .cs-footer-grid, .cs-grid-split, .cs-flex-row-responsive { min-width: 0; }
 
+/* Dropdown hover styling replaces inline visual hover handlers. */
 .cs-nav-dropdown-wrap:hover > .cs-dropdown { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
-.cs-nav-dropdown-wrap:hover > span { color: #8B5CF6; }
+.cs-nav-dropdown-wrap:hover > span { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20px rgba(139,92,246,.35); }
 .cs-nav-dropdown-wrap:hover > span svg { transform: rotate(180deg); }
 .cs-dropdown-link:hover { background-color: #F5F0FF; transform: translateX(3px); }
-.cs-dropdown-link:hover .ddt { color: #7C3AED; }
-nav a:hover { color: #8B5CF6; }
+.cs-dropdown-link:hover .ddt { color: #7C3AED; text-shadow: 0 0 8px rgba(139,92,246,.45); }
+nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20px rgba(139,92,246,.35); }
 
 @media (max-width: 1024px) {
   .cs-header-inner { padding-left: 20px; padding-right: 20px; gap: 16px; flex-wrap: wrap; }
@@ -233,179 +276,837 @@ nav a:hover { color: #8B5CF6; }
   .cs-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 32px !important; }
   .cs-grid-split { grid-template-columns: 1fr !important; gap: 32px !important; }
   .cs-flex-row-responsive { flex-direction: column !important; gap: 32px !important; align-items: stretch !important; }
+  .cs-card-460, .cs-card-420, .cs-card-380, .cs-card-360 { width: 100% !important; max-width: 100% !important; }
+  .cs-dropdown { max-width: calc(100vw - 32px); }
+  .cs-large-heading { font-size: clamp(34px, 6vw, 48px) !important; }
+}
+
+@media (max-width: 768px) {
+  .cs-header-inner { padding: 12px 16px; }
+  .cs-site-header .cs-header-inner { align-items: center; }
+  .cs-site-header .cs-header-inner > nav { overflow-x: auto; justify-content: flex-start; flex-wrap: nowrap; width: 100%; padding-bottom: 2px; scrollbar-width: none; }
+  .cs-site-header .cs-header-inner > nav::-webkit-scrollbar { display: none; }
+  .cs-main-nav { gap: 10px; }
+  .cs-site-header .cs-header-inner > nav a, .cs-site-header .cs-header-inner > nav span { white-space: nowrap; }
+  .cs-site-header .cs-header-inner > div:last-child { width: 100%; margin-left: 0; justify-content: flex-end; }
+  .cs-site-header .cs-header-inner > div:last-child a { padding-left: 12px; padding-right: 12px; }
+  .cs-dropdown { position: fixed !important; left: 16px !important; right: 16px !important; top: auto !important; width: auto !important; max-width: none !important; transform: translateY(4px) !important; }
+  .cs-nav-dropdown-wrap:hover > .cs-dropdown { transform: translateY(0) !important; }
+  section, footer { max-width: 100%; overflow-x: clip; }
+  .cs-container-1140, .cs-container-1000, .cs-container-800 { width: 100%; max-width: 100%; padding-left: 16px !important; padding-right: 16px !important; }
+  .cs-grid-4, .cs-grid-3, .cs-grid-2, .cs-footer-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .cs-grid-split { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .cs-flex-row-responsive { flex-direction: column !important; gap: 24px !important; align-items: stretch !important; }
+  .cs-card-460, .cs-card-420, .cs-card-380, .cs-card-360, .cs-card-300, .cs-card-280 { width: 100% !important; max-width: 100% !important; }
+  .cs-text-720, .cs-text-680, .cs-text-650, .cs-text-600, .cs-text-500 { max-width: 100% !important; }
+  h1.cs-large-heading, h2.cs-large-heading, h3.cs-large-heading { font-size: clamp(30px, 9vw, 40px) !important; line-height: 1.12 !important; letter-spacing: -.7px !important; }
+  p { max-width: 100%; }
+  .cs-site-body > section { padding-top: 48px !important; padding-bottom: 32px !important; }
+  .cs-site-body > footer { padding-left: 16px !important; padding-right: 16px !important; }
+  .cs-site-body input, .cs-site-body textarea, .cs-site-body select, .cs-site-body button { max-width: 100%; }
+  .cs-fixed-large-width { width: 100% !important; max-width: 100% !important; }
+}
+
+@media (max-width: 480px) {
+  .cs-header-inner { padding-left: 12px; padding-right: 12px; }
+  .cs-site-header .cs-header-inner > div:first-child span { font-size: 18px !important; }
+  .cs-site-header .cs-header-inner > div:first-child img { width: 38px !important; height: auto !important; }
+  .cs-site-header .cs-header-inner > div:last-child { gap: 6px !important; }
+  .cs-site-header .cs-header-inner > div:last-child a { font-size: 13px !important; padding: 8px 10px !important; }
+  .cs-site-body > section { padding-left: 0 !important; padding-right: 0 !important; }
+  .cs-dropdown { left: 10px !important; right: 10px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-nav-dropdown-wrap:hover > .cs-dropdown { transition: none !important; }
+}
+
+/* =========================================================
+   Responsive navigation + dashboard fixes
+   ========================================================= */
+
+/* Dropdowns must never be clipped by the header/nav. */
+.cs-site-header,
+.cs-header-inner,
+.cs-main-nav,
+.cs-nav-dropdown-wrap {
+  overflow: visible !important;
+}
+
+.cs-nav-dropdown-wrap {
+  position: relative !important;
+  z-index: 1002 !important;
+}
+
+.cs-dropdown {
+  z-index: 9999 !important;
+  max-width: min(420px, calc(100vw - 32px)) !important;
+}
+
+/* Desktop: hover opens the dropdown cleanly. */
+@media (min-width: 1025px) {
+  .cs-nav-dropdown-wrap:hover > .cs-dropdown,
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translate(-50%, 0) !important;
+  }
+
+  .cs-nav-dropdown-wrap:hover > .cs-nav-toggle svg,
+  .cs-nav-dropdown-wrap.is-open > .cs-nav-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* Tablet + mobile: tap/click accordion behavior. */
+@media (max-width: 1024px) {
+  .cs-site-header .cs-header-inner > nav {
+    overflow: visible !important;
+  }
+
+  .cs-main-nav {
+    overflow: visible !important;
+  }
+
+  .cs-nav-dropdown-wrap {
+    display: inline-block !important;
+  }
+
+  .cs-nav-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    min-height: 44px;
+    padding: 8px 4px !important;
+    touch-action: manipulation;
+  }
+
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: absolute !important;
+    top: calc(100% + 4px) !important;
+    left: 0 !important;
+    right: auto !important;
+    width: min(420px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+    transform: translateY(4px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  .cs-nav-dropdown-wrap.is-open > .cs-nav-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* Mobile: keep the menu wrapped instead of using a horizontal scroller
+   that can clip an open dropdown. */
+@media (max-width: 768px) {
+  .cs-site-header .cs-header-inner > nav {
+    overflow: visible !important;
+    width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+  }
+
+  .cs-main-nav {
+    gap: 8px 14px !important;
+  }
+
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    left: 0 !important;
+    right: auto !important;
+    width: min(390px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  .cs-dropdown-link {
+    min-height: 48px !important;
+  }
+}
+
+/* Homepage analytics/dashboard mockup:
+   sidebar and dashboard content stack below 992px. */
+@media (max-width: 992px) {
+  .cs-inline-97ee4194f4 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    overflow: visible !important;
+  }
+
+  .cs-inline-2d3ab085bd {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid #F3F4F6 !important;
+    padding: 0 0 16px 0 !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .cs-inline-2d3ab085bd > div {
+    flex: 0 1 auto !important;
+  }
+
+  .cs-inline-ee3d55bf99,
+  .cs-inline-3c083ca552 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 100% !important;
+  }
+
+  .cs-inline-11d240cbc8 {
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .cs-inline-47f83cc9bb,
+  .cs-inline-6a9188d613,
+  .cs-inline-9cb8aba6a3 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .cs-inline-e28eef1e28 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-inline-97ee4194f4 {
+    padding: 16px !important;
+    gap: 16px !important;
+  }
+
+  .cs-inline-2d3ab085bd {
+    gap: 6px !important;
+  }
+
+  .cs-inline-11d240cbc8 {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .cs-inline-47f83cc9bb {
+    padding: 20px !important;
+    min-height: 260px !important;
+  }
+
+  .cs-inline-9cbe1fe386 {
+    width: 100% !important;
+    height: 120px !important;
+  }
+}
+
+</style>
+<style>
+/* FINAL VIEWPORT-SAFE DROPDOWN FIX */
+@media (max-width: 1024px) {
+  .cs-site-header, .cs-header-inner, .cs-main-nav, .cs-nav-dropdown-wrap {
+    overflow: visible !important;
+  }
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    position: fixed !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(420px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 24px) !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    transform: translateY(4px) !important;
+    z-index: 10000 !important;
+  }
+  .cs-nav-dropdown-wrap.is-open > .cs-dropdown {
+    transform: translateY(0) !important;
+  }
+}
+@media (max-width: 480px) {
+  .cs-nav-dropdown-wrap > .cs-dropdown {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
+</style>
+
+<style id="final-nav-trigger-cleanup">
+/* Final cleanup: Features/Solutions triggers are text-only links on desktop + tablet. */
+.cs-nav-dropdown-wrap > .cs-nav-toggle,
+.cs-nav-dropdown-wrap > .cs-nav-toggle:hover,
+.cs-nav-dropdown-wrap > .cs-nav-toggle:active,
+.cs-nav-dropdown-wrap > .cs-nav-toggle:focus {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  box-shadow: none !important;
+  outline: none;
+  color: #374151 !important;
+  font: inherit !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: inherit !important;
+  padding: 8px 2px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cs-nav-dropdown-wrap > .cs-nav-toggle {
+    min-height: 0 !important;
+    width: auto !important;
+  }
+}
+</style>
+<style>
+/* Mobile navbar dropdown containment fix */
+@media (max-width: 768px) {
+  nav .dropdown,
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown,
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    box-sizing: border-box;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    left: 0 !important;
+    right: auto !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  /* When the dropdown is nested in a right-aligned wrapper, anchor it to
+     the viewport-safe edge rather than allowing it to extend off-screen. */
+  nav .dropdown.align-right > .dropdown-menu,
+  nav .dropdown.right > .dropdown-menu,
+  nav .dropdown-menu.align-right,
+  nav .dropdown-content.align-right,
+  .navbar .dropdown.align-right > .dropdown-menu,
+  .navbar .dropdown.right > .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  nav .dropdown-menu *,
+  nav .dropdown-content *,
+  nav .submenu *,
+  nav [role="menu"] *,
+  .navbar .dropdown-menu *,
+  .navbar .dropdown-content *,
+  .navbar .submenu *,
+  .navbar [role="menu"] * {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Preserve normal desktop positioning; only prevent oversized menus. */
+  nav .dropdown-menu,
+  nav .dropdown-content,
+  nav .submenu,
+  nav [role="menu"],
+  .navbar .dropdown-menu,
+  .navbar .dropdown-content,
+  .navbar .submenu,
+  .navbar [role="menu"] {
+    max-width: min(90vw, 640px);
+    box-sizing: border-box;
+  }
+}
+</style>
+<style>
+/* Mobile/tablet Features & Solutions dropdown fix */
+@media (max-width: 1024px) {
+  nav .dropdown, .navbar .dropdown { position: relative !important; }
+  nav .dropdown-menu, nav .dropdown-content, nav [role="menu"], nav .submenu,
+  .navbar .dropdown-menu, .navbar .dropdown-content, .navbar [role="menu"], .navbar .submenu {
+    display: none; position: absolute !important; z-index: 9999 !important;
+    top: 100% !important; left: 0 !important; right: auto !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important; min-width: 0 !important;
+    max-height: calc(100vh - 90px); overflow-y: auto; overflow-x: hidden;
+  }
+  nav .dropdown.open > .dropdown-menu, nav .dropdown.open > .dropdown-content,
+  nav .dropdown.open > [role="menu"], nav .dropdown.open > .submenu,
+  .navbar .dropdown.open > .dropdown-menu, .navbar .dropdown.open > .dropdown-content,
+  .navbar .dropdown.open > [role="menu"], .navbar .dropdown.open > .submenu,
+  nav .dropdown.active > .dropdown-menu, nav .dropdown.active > .dropdown-content,
+  .navbar .dropdown.active > .dropdown-menu, .navbar .dropdown.active > .dropdown-content,
+  nav .dropdown:focus-within > .dropdown-menu, nav .dropdown:focus-within > .dropdown-content,
+  .navbar .dropdown:focus-within > .dropdown-menu, .navbar .dropdown:focus-within > .dropdown-content { display: block !important; }
+  nav .dropdown-menu.show, nav .dropdown-content.show, .navbar .dropdown-menu.show, .navbar .dropdown-content.show { display:block !important; }
+}
+@media (max-width: 767px) {
+  nav .dropdown-menu, nav .dropdown-content, nav [role="menu"], nav .submenu,
+  .navbar .dropdown-menu, .navbar .dropdown-content, .navbar [role="menu"], .navbar .submenu {
+    position: fixed !important; top: auto !important; left: 12px !important; right: 12px !important;
+    width: auto !important; max-width: none !important;
+  }
 }
 </style>
 </head>
-<body class="cs-inline-39d15274db">
-<header class="cs-inline-eb63c261dc">
-<div class="cs-inline-4081e0df8f">
+<body class="cs-inline-39d15274db cs-site-body">
+<!-- Outer Header Wrapper Section (1140px Max Width) -->
+<header class="cs-inline-eb63c261dc cs-site-header">
+<div class="cs-inline-4081e0df8f cs-container-1140 cs-flex-row-responsive cs-header-inner cs-fixed-large-width">
+<!-- Header Logo -->
 <a class="cs-inline-8d6c846a46" href="index.html">
 <img alt="Converstar Logo" class="cs-inline-5678d0466a" src="https://i.ibb.co/Dfh0Z48j/remove-the-square-shape-Yh-Vuoa-QFU8apo-Rc-T3-J-Vmg-gt-ERf-CRu-OMg-OWAAf-r-ZA.jpg"/>
 <span class="cs-inline-3417ddfc57">Converstar</span>
 </a>
-<nav class="cs-inline-97c1e423cf">
-<a class="cs-inline-b7bc293278" href="index.html">Home</a>
-<a class="cs-inline-b7bc293278" href="pricing.html">Pricing</a>
+<!-- Navigation -->
+<nav class="cs-inline-97c1e423cf cs-main-nav">
+<a class="cs-inline-b7bc293278" href="index.html">Home</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-140a1aa94a cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-features">Features<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-91dbd449a4 cs-dropdown cs-fixed-large-width" id="nav-dd-features"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20socialproof.html"><div class="ddt cs-inline-a393e84ba6">Social Proof &amp; Urgency</div><div class="cs-inline-d3b4f4eb44">Live counters, inline reviews &amp; rotating widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20targeting.html"><div class="ddt cs-inline-a393e84ba6">Targeting &amp; Triggers</div><div class="cs-inline-d3b4f4eb44">Visibility rules, translation &amp; behavioral pop-ups</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20chat.html"><div class="ddt cs-inline-a393e84ba6">Direct Chat &amp; Lead Capture</div><div class="cs-inline-d3b4f4eb44">Messenger, WhatsApp, SMS &amp; request collectors</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="feature%20analytics.html"><div class="ddt cs-inline-a393e84ba6">Analytics &amp; Tracking</div><div class="cs-inline-d3b4f4eb44">Real-time maps, campaign stats &amp; button tracking</div></a></div></div><a class="cs-inline-b7bc293278" href="Pricing.html">Pricing</a><div class="cs-inline-b726121fd0 cs-nav-dropdown-wrap"><button type="button" class="cs-inline-140a1aa94a cs-nav-toggle" aria-expanded="false" aria-controls="nav-dd-solutions">Solutions<svg class="cs-inline-0d2a150ec4" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="cs-inline-4b2970594c cs-dropdown" id="nav-dd-solutions"><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20ecommerce.html"><div class="ddt cs-inline-a393e84ba6">For E-commerce</div><div class="cs-inline-d3b4f4eb44">Save abandoned carts &amp; boost live sales</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20saas.html"><div class="ddt cs-inline-a393e84ba6">For SaaS &amp; Startups</div><div class="cs-inline-d3b4f4eb44">SPA optimization &amp; onboarding widgets</div></a><a class="cs-inline-01be65ad02 cs-dropdown-link" href="solutions%20agency.html"><div class="ddt cs-inline-a393e84ba6">For Agencies &amp; Marketers</div><div class="cs-inline-d3b4f4eb44">Team system, white-labeling &amp; QR deployment</div></a></div></div>
 </nav>
+<!-- App Links -->
 <div class="cs-inline-c9a7335caf">
 <a class="cs-inline-5902129052" href="https://app.converstar.com/login">Sign In</a>
 <a class="cs-inline-5f595e4068" href="https://app.converstar.com/register">Get Started</a>
 </div>
 </div>
 </header>
-
-<section class="cs-inline-9260bfc0b2">
-<div class="cs-inline-2ea72e839a">
-<h1 class="cs-inline-5fc0d17c05">Trust, Transparency, &amp; Compliance</h1>
-<p class="cs-inline-2a8f734ac6">Review our operating policies, data safety protocols, and framework guidelines designed to protect your traffic and user information.</p>
+<!-- Intermediate Main Content Section: Legal Page Header (1000px Max Width) -->
+<section class="animate-fade-in cs-inline-9260bfc0b2">
+<div class="cs-inline-2ea72e839a cs-container-1000 cs-flex-column cs-fixed-large-width">
+<h1 class="cs-inline-5fc0d17c05 cs-large-heading">
+        Trust, Transparency, &amp; Compliance
+      </h1>
+<p class="cs-inline-2a8f734ac6 cs-fixed-large-width">
+        We've assembled all of our legal documentation in a clean, comprehensive portal. Our infrastructure is built from the ground up on GDPR and HIPAA compliance.
+      </p>
 </div>
 </section>
-
-<section class="cs-inline-bea44d2fe0">
-<div class="cs-inline-fa1a7ac2bb">
+<!-- Intermediate Main Content Section: Interactive Legal Navigation Tabs (1000px Max Width) -->
+<section class="animate-fade-in cs-inline-bea44d2fe0">
+<div class="cs-inline-fa1a7ac2bb cs-container-1000 cs-fixed-large-width">
 <div class="cs-inline-4df518bd96">
-<button class="cs-inline-1401aee1f4" onclick="switchTab('privacy')">Privacy Policy</button>
-<button class="cs-inline-d5d241ccad" onclick="switchTab('terms')">Terms of Service</button>
-<button class="cs-inline-d5d241ccad" onclick="switchTab('security')">Security</button>
+<button class="legal-tab-btn tactile-btn cs-inline-1401aee1f4" onclick="switchTab('terms', this)">1. Terms of Use</button>
+<button class="legal-tab-btn tactile-btn cs-inline-d5d241ccad" onclick="switchTab('privacy', this)">2. Privacy Policy</button>
+<button class="legal-tab-btn tactile-btn cs-inline-d5d241ccad" onclick="switchTab('dpa', this)">3. Data Processing Agreement (DPA)</button>
+<button class="legal-tab-btn tactile-btn cs-inline-d5d241ccad" onclick="switchTab('cookie', this)">4. Cookie Policy</button>
 </div>
 </div>
 </section>
-
+<!-- Intermediate Main Content Section: Dynamic Legal Document Cards Container (1000px Max Width) -->
 <section class="cs-inline-310f4e1776">
-<div class="cs-inline-fa1a7ac2bb">
-<div class="cs-inline-bb08c7f846">
-  <!-- Privacy Tab Content -->
-  <div id="privacy" class="legal-content-panel active">
-    <div class="cs-inline-9c98edd452">
-      <h2 class="cs-inline-99db31dc15">Privacy Policy</h2>
-      <span class="cs-inline-1f45926048">Last updated: August 2026</span>
-    </div>
-    <div class="cs-inline-141baf8f97">
-      <p class="cs-inline-67b9670062">At Converstar, we take your data privacy seriously. This privacy policy document outlines the types of personal information is received and collected and how it is used.</p>
-      <div class="cs-inline-b3715e8079">
-        <div class="cs-inline-6f02d7b34f">
-          <h3 class="cs-inline-bf3fd30006">Information We Collect</h3>
-          <p class="cs-inline-3e9e550c18">We collect analytical metrics, account configuration information, and widget interactions required to power real-time conversion triggers securely.</p>
-        </div>
-        <div class="cs-inline-6f02d7b34f">
-          <h3 class="cs-inline-bf3fd30006">How We Use Data</h3>
-          <p class="cs-inline-3e9e550c18">Your metrics are processed exclusively to optimize bounce-rate recoveries, display localized social proof notifications, and maintain platform stability.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Terms Tab Content -->
-  <div id="terms" class="legal-content-panel">
-    <div class="cs-inline-9c98edd452">
-      <h2 class="cs-inline-99db31dc15">Terms of Service</h2>
-      <span class="cs-inline-1f45926048">Last updated: August 2026</span>
-    </div>
-    <div class="cs-inline-141baf8f97">
-      <p class="cs-inline-67b9670062">By accessing or using Converstar, you agree to comply with and be bound by these Terms of Service. Please read them carefully before launching widgets on your pages.</p>
-      <div class="cs-inline-b3715e8079">
-        <div class="cs-inline-6f02d7b34f">
-          <h3 class="cs-inline-bf3fd30006">Account Responsibilities</h3>
-          <p class="cs-inline-3e9e550c18">Users are responsible for maintaining the security of their accounts, API credentials, and ensuring tracking scripts are placed on authorized domains.</p>
-        </div>
-        <div class="cs-inline-6f02d7b34f">
-          <h3 class="cs-inline-bf3fd30006">Service Availability</h3>
-          <p class="cs-inline-3e9e550c18">We maintain high-uptime infrastructures across our global distribution nodes, protecting your web pages against tracking drops or bottlenecks.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Security Tab Content -->
-  <div id="security" class="legal-content-panel">
-    <div class="cs-inline-9c98edd452">
-      <h2 class="cs-inline-99db31dc15">Security Protocols</h2>
-      <span class="cs-inline-1f45926048">Last updated: August 2026</span>
-    </div>
-    <div class="cs-inline-141baf8f97">
-      <p class="cs-inline-67b9670062">Converstar implements military-grade security frameworks to protect your lead capture lists, forms, and incoming traffic transactions.</p>
-      <div class="cs-inline-b3715e8079">
-        <div class="cs-inline-6f02d7b34f">
-          <h3 class="cs-inline-bf3fd30006">Encryption Standard</h3>
-          <p class="cs-inline-3e9e550c18">All data transmitted between visitor web browsers, widgets, and our analytics database is fully secured using strong TLS/SSL encryption.</p>
-        </div>
-        <div class="cs-inline-6f02d7b34f">
-          <h3 class="cs-inline-bf3fd30006">Bot Protection</h3>
-          <p class="cs-inline-3e9e550c18">Advanced behavioral filters and honeypot mechanisms filter out malicious automated scrapers to keep your conversion metrics clean.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="cs-inline-fa1a7ac2bb cs-container-1000 cs-fixed-large-width">
+<!-- TAB 1: TERMS OF USE -->
+<div class="legal-content-panel active cs-inline-bb08c7f846" id="terms-panel">
+<div class="cs-inline-9c98edd452">
+<h2 class="cs-inline-99db31dc15">Terms of Use</h2>
+<span class="cs-inline-1f45926048">Last revised: June 12, 2024</span>
+</div>
+<div class="cs-inline-141baf8f97">
+<!-- Section 1 & 2 & 3 Grid Layout -->
+<div class="cs-inline-b3715e8079">
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">1. Introduction</h3>
+<p class="cs-inline-3e9e550c18">
+                Welcome to Converstar, a fully-loaded toolkit designed to enhance your website's engagement and conversion rates through various marketing tools, plugins, and pixel sets. By accessing or using our services, you agree to comply with and be bound by the following Terms of Use. Please read them carefully. If you do not agree with any part of these terms, you must not use our services.
+              </p>
+</div>
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">2. Definitions</h3>
+<ul class="cs-inline-439d96bc14">
+<li class="cs-inline-4feedf8e61"><strong>"We," "Us," "Our":</strong> Refers to Converstar and its affiliated companies.</li>
+<li class="cs-inline-4feedf8e61"><strong>"You," "Your":</strong> Refers to the user or subscriber of the Converstar services.</li>
+<li class="cs-inline-4feedf8e61"><strong>"Services":</strong> Refers to the tools, software, and any other services provided by Converstar.</li>
+</ul>
+</div>
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">3. Use of Services</h3>
+<p class="cs-inline-67b9670062">
+                You must be at least 18 years old to use our services. By using our services, you represent and warrant that you are of legal age and capable of forming a binding contract.
+              </p>
+<p class="cs-inline-3e9e550c18">
+                You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
+              </p>
+</div>
+</div>
+<!-- Section 4 & 5 -->
+<div class="cs-inline-b3715e8079">
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">4. Limited License &amp; Access</h3>
+<p class="cs-inline-3e9e550c18">
+                Subject to these Terms of Use, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use the services for your personal or business use. You agree not to reproduce, duplicate, copy, sell, resell, or exploit any portion of the services without express written permission.
+              </p>
+</div>
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">5. User Content</h3>
+<p class="cs-inline-3e9e550c18">
+                You retain sole responsibility for all content that you upload, post, email, transmit, or otherwise make available via the services. We do not control the content posted via the services and do not guarantee the accuracy, integrity, or quality of such content.
+              </p>
+</div>
+</div>
+<!-- Section 6, 7, 8 full text block -->
+<div class="cs-inline-502ba1727e">
+<h3 class="cs-inline-98ee899152">6. Payment, Refunds, &amp; Intellectual Property</h3>
+<p class="cs-inline-3e9e550c18">
+              By subscribing to our services, you agree to pay all applicable fees. All fees are non-refundable except as expressly provided in our Refund Policy. We offer a 30-day money-back guarantee on first-time purchases. To request a refund, contact our support team at support@converstar.com or through our Help Center. All intellectual property rights in and to the services and content are owned by Converstar or its licensors.
+            </p>
+</div>
+<!-- Section 9, 10, 11, 12 -->
+<div class="cs-inline-502ba1727e">
+<h3 class="cs-inline-98ee899152">7. Disclaimers, Governing Law, &amp; Contact</h3>
+<p class="cs-inline-3e9e550c18">
+              The services are provided on an "as is" and "as available" basis. We disclaim all warranties of any kind, whether express or implied. These Terms of Use shall be governed and construed in accordance with the laws of the jurisdiction in which Converstar operates. If you have any questions about these Terms of Use, please contact us at support@converstar.com.
+            </p>
+</div>
+</div>
+</div>
+<!-- TAB 2: PRIVACY POLICY -->
+<div class="legal-content-panel cs-inline-bb08c7f846" id="privacy-panel">
+<div class="cs-inline-9c98edd452">
+<h2 class="cs-inline-99db31dc15">Privacy Policy</h2>
+<span class="cs-inline-1f45926048">Last revised: June 12, 2024</span>
+</div>
+<div class="cs-inline-4ac120810a">
+<!-- Registered Entity Box -->
+<div class="cs-inline-1b4667eec2">
+<h4 class="cs-inline-ffb7279dfd">Registered Entity Office</h4>
+<p class="cs-inline-fef52e9b3f">
+<strong>Lacoster, LLC (Converstar)</strong>, 313 Westen 2nd Street, Suite #4131, Casper, Wyoming - 82601, United States
+            </p>
+<p class="cs-inline-72662bc6db">
+              Contact information: support@converstar.com
+            </p>
+</div>
+<p class="cs-inline-3e9e550c18">
+            Lacoster, LLC, the creator of Converstar, is deeply committed to safeguarding your privacy. We understand the importance of your personal information and are dedicated to protecting it. This Privacy Policy details our practices and procedures concerning the collection, use, and sharing of your personal information, clearly outlining how we handle your data, we aim to provide transparency and build trust with our users.
+          </p>
+<div class="cs-inline-8435513ec7">
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">Information We Collect</h3>
+<p class="cs-inline-3e9e550c18">
+                Personal identity information, billing details securely handled via Stripe/PayPal, and transient cookie/tracking behavior metrics.
+              </p>
+</div>
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">How We Collect Data</h3>
+<p class="cs-inline-3e9e550c18">
+                Through customer user forms, cookie consent banners, web beacons, and log file metrics triggered programmatically.
+              </p>
+</div>
+<div class="interactive-card cs-inline-6f02d7b34f">
+<h3 class="cs-inline-bf3fd30006">Data Protection</h3>
+<p class="cs-inline-3e9e550c18">
+                Complies with end-to-end industry-grade encryption, SOC-2 alignment, and strict GDPR handling of consumer identity.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 3: DPA -->
+<div class="legal-content-panel cs-inline-bb08c7f846" id="dpa-panel">
+<div class="cs-inline-9c98edd452">
+<h2 class="cs-inline-99db31dc15">Data Processing Agreement (DPA)</h2>
+<span class="cs-inline-1f45926048">Effective as of May 25, 2018</span>
+</div>
+<div class="cs-inline-efd85b92cb">
+<p class="cs-inline-3e9e550c18">
+            This Data Processing Agreement ("DPA") reflects the parties' agreement with respect to the terms governing the processing of Personal Data under the Converstar Terms of Service.
+          </p>
+<div class="cs-inline-6f02d7b34f">
+<h3 class="cs-inline-9085c9fe5c">Standard Contractual Clauses (SCC)</h3>
+<p class="cs-inline-3e9e550c18">
+              Converstar processes personal data strictly on behalf of the controller and in accordance with documented instructions. Both parties ensure appropriate technical and organizational security measures are implemented to protect data integrity and confidentiality.
+            </p>
+</div>
+</div>
+</div>
+<!-- TAB 4: COOKIE POLICY -->
+<div class="legal-content-panel cs-inline-bb08c7f846" id="cookie-panel">
+<div class="cs-inline-9c98edd452">
+<h2 class="cs-inline-99db31dc15">Cookie Policy</h2>
+<span class="cs-inline-1f45926048">Last revised: June 12, 2024</span>
+</div>
+<div class="cs-inline-efd85b92cb">
+<p class="cs-inline-3e9e550c18">
+            We use cookies and similar tracking technologies to track activity on our service and hold certain information. Cookies are files with small amount of data which may include an anonymous unique identifier.
+          </p>
+<div class="cs-inline-6f02d7b34f">
+<h3 class="cs-inline-9085c9fe5c">Types of Cookies We Use</h3>
+<ul class="cs-inline-439d96bc14">
+<li class="cs-inline-4feedf8e61"><strong>Essential Cookies:</strong> Required for user authentication and security.</li>
+<li class="cs-inline-4feedf8e61"><strong>Preference Cookies:</strong> Remember your language and UI setup choices.</li>
+<li class="cs-inline-4feedf8e61"><strong>Analytics Cookies:</strong> Track visitor interaction to optimize conversion metrics.</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </section>
-
-<!-- ==================== FOOTER ==================== -->
+<!-- Outer Footer Wrapper Section (1140px Max Width) -->
 <footer class="cs-inline-69792f6899">
-<div class="cs-inline-adac057d19">
+<div class="cs-inline-adac057d19 cs-container-1140 cs-fixed-large-width">
 <div class="cs-inline-5f115a22ca cs-footer-grid">
 <div>
+<!-- Footer Logo -->
 <a class="cs-inline-7c9a46151d" href="index.html">
 <img alt="Converstar Logo" class="cs-inline-5678d0466a" src="https://i.ibb.co/Dfh0Z48j/remove-the-square-shape-Yh-Vuoa-QFU8apo-Rc-T3-J-Vmg-gt-ERf-CRu-OMg-OWAAf-r-ZA.jpg"/>
 <span class="cs-inline-3417ddfc57">Converstar</span>
 </a>
-<p class="cs-inline-15ddc66bf2">The ultimate conversion engine that turns bouncing website traffic into paying customers on autopilot.</p>
+<p class="cs-inline-15ddc66bf2 cs-card-280">
+            The ultimate conversion engine that turns bouncing traffic into loyal, paying customers on complete autopilot.
+          </p>
 </div>
 <div>
-<h4 class="cs-inline-993d8945c4">Product</h4>
+<h5 class="cs-inline-993d8945c4">Product</h5>
 <div class="cs-inline-464b28cd89">
-<a class="cs-inline-2604384721" href="#">Social Proof</a>
-<a class="cs-inline-2604384721" href="#">Targeting &amp; Triggers</a>
-</div>
-</div>
-<div>
-<h4 class="cs-inline-993d8945c4">Solutions</h4>
-<div class="cs-inline-464b28cd89">
-<a class="cs-inline-2604384721" href="#">E-commerce</a>
-<a class="cs-inline-2604384721" href="#">SaaS &amp; Startups</a>
+<a class="cs-inline-2604384721" href="Features.html">Features</a><a class="cs-inline-2604384721" href="Pricing.html">Pricing</a><a class="cs-inline-2604384721" href="integrations.html">Integrations</a><a class="cs-inline-2604384721" href="solutions%20saas.html">Solutions</a>
 </div>
 </div>
 <div>
-<h4 class="cs-inline-993d8945c4">Company</h4>
+<h5 class="cs-inline-993d8945c4">Solutions</h5>
 <div class="cs-inline-464b28cd89">
-<a class="cs-inline-2604384721" href="#">About Us</a>
-<a class="cs-inline-2604384721" href="#">Privacy Policy</a>
+<a class="cs-inline-2604384721" href="solutions%20ecommerce.html">For E-commerce</a><a class="cs-inline-2604384721" href="solutions%20saas.html">For SaaS &amp; Startups</a><a class="cs-inline-2604384721" href="solutions%20agency.html">For Agencies</a><a class="cs-inline-2604384721" href="support.html">Help Center &amp; Support</a>
+</div>
+</div>
+<div>
+<h5 class="cs-inline-993d8945c4">Legal</h5>
+<div class="cs-inline-464b28cd89">
+<a class="cs-inline-2604384721" href="about%20story.html">About Us</a><a class="cs-inline-2604384721" href="legal.html">Privacy Policy</a><a class="cs-inline-2604384721" href="legal.html">Terms of Service</a><a class="cs-inline-2604384721" href="legal.html">Cookie Policy</a><a class="cs-inline-2604384721" href="legal.html">Data Security</a>
 </div>
 </div>
 </div>
-<div class="cs-inline-95a317ba5b">
-<div class="cs-inline-6525114898">&copy; 2026 Converstar. All rights reserved.</div>
+<div class="cs-inline-95a317ba5b cs-flex-row-responsive">
+<div class="cs-inline-6525114898">
+          © 2026 Converstar. All rights reserved.
+        </div>
+<!-- Social Icons -->
+<div class="cs-inline-c9a7335caf">
+<a aria-label="Twitter" class="cs-inline-b6005b36ad" href="https://twitter.com" rel="noopener" target="_blank"><svg class="cs-inline-a3bf3580dd" viewbox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.58 8.58 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path></svg></a><a aria-label="LinkedIn" class="cs-inline-b6005b36ad" href="https://linkedin.com" rel="noopener" target="_blank"><svg class="cs-inline-a3bf3580dd" viewbox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z"></path></svg></a><a aria-label="GitHub" class="cs-inline-b6005b36ad" href="https://github.com" rel="noopener" target="_blank"><svg class="cs-inline-a3bf3580dd" viewbox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg></a>
+</div>
 </div>
 </div>
 </footer>
-
+<!-- Interactive JavaScript for Legal Document Tabs -->
 <script>
-  function switchTab(tabId) {
-    // Hide all panels
-    const panels = document.querySelectorAll('.legal-content-panel');
-    panels.forEach(panel => panel.classList.remove('active'));
+    function switchTab(tabName, btnElement) {
+      // Hide all panels
+      document.querySelectorAll('.legal-content-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      
+      // Reset all tab buttons styling
+      document.querySelectorAll('.legal-tab-btn').forEach(btn => {
+        btn.style.backgroundColor = 'transparent';
+        btn.style.color = '#71717A';
+      });
 
-    // Remove active style from all buttons
-    const buttons = document.querySelectorAll('.cs-inline-4df518bd96 button');
-    buttons.forEach(btn => {
-      btn.style.backgroundColor = 'transparent';
-      btn.style.color = '#71717A';
-      btn.className = 'cs-inline-d5d241ccad';
+      // Activate selected panel
+      document.getElementById(tabName + '-panel').classList.add('active');
+
+      // Style active button
+      btnElement.style.backgroundColor = '#7A33E2';
+      btnElement.style.color = '#FFFFFF';
+    }
+  </script>
+<script>
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initMotion() {
+    if (reduceMotion) return;
+
+    /* Reveal meaningful page blocks as they enter the viewport. */
+    var candidates = document.querySelectorAll(
+      'main > section, section, article, .card, .feature-card, .pricing-card, ' +
+      '.testimonial, .integration-card, .faq-item, .solution-card'
+    );
+
+    var seen = new WeakSet();
+    var index = 0;
+
+    Array.prototype.forEach.call(candidates, function (el) {
+      if (seen.has(el)) return;
+      seen.add(el);
+
+      /* Avoid animating tiny nested sections and hidden elements. */
+      if (el.offsetHeight < 45 || el.closest('[hidden]')) return;
+
+      el.classList.add('motion-reveal');
+
+      /* Subtle stagger without making pages feel slow. */
+      var delay = Math.min((index % 5) * 55, 220);
+      el.style.setProperty('--motion-delay', delay + 'ms');
+      index++;
     });
 
-    // Show target panel
-    const target = document.getElementById(tabId);
-    if (target) target.classList.add('active');
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Highlight clicked button
-    const activeBtn = event.currentTarget;
-    if (activeBtn) {
-      activeBtn.className = 'cs-inline-1401aee1f4';
-      activeBtn.style.backgroundColor = '#7A33E2';
-      activeBtn.style.color = '#FFFFFF';
-    }
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.motion-reveal'),
+      function (el) { observer.observe(el); }
+    );
+
+    /* Give prominent CTAs/cards a lightweight hover lift. */
+    Array.prototype.forEach.call(
+      document.querySelectorAll(
+        'button, .btn, a[class*="button"], a[class*="btn"], ' +
+        '.card, .feature-card, .pricing-card, .integration-card'
+      ),
+      function (el) { el.classList.add('motion-interactive'); }
+    );
+
+    /* Add a restrained floating effect to likely visual/illustration blocks. */
+    Array.prototype.forEach.call(
+      document.querySelectorAll('img[class*="hero"], .hero img, .hero-image, .hero-visual'),
+      function (el) { el.classList.add('motion-float'); }
+    );
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMotion);
+  } else {
+    initMotion();
+  }
+})();
 </script>
+
+<script>
+/* Converstar responsive Features/Solutions navigation. */
+(function () {
+  function initResponsiveNav() {
+    var wraps = document.querySelectorAll('.cs-nav-dropdown-wrap');
+    var small = function () { return window.matchMedia('(max-width: 1024px)').matches; };
+
+    function closeWrap(wrap) {
+      wrap.classList.remove('is-open');
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      if (dropdown) {
+        dropdown.style.left = '';
+        dropdown.style.top = '';
+        dropdown.style.width = '';
+        dropdown.style.maxWidth = '';
+        dropdown.style.transform = '';
+      }
+    }
+
+    function positionDropdown(wrap) {
+      if (!small() || !wrap.classList.contains('is-open')) return;
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (!toggle || !dropdown) return;
+      var rect = toggle.getBoundingClientRect();
+      var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+      var gutter = window.innerWidth <= 480 ? 8 : 12;
+      var width = Math.max(0, viewportWidth - (gutter * 2));
+      dropdown.style.width = width + 'px';
+      dropdown.style.maxWidth = width + 'px';
+      dropdown.style.left = gutter + 'px';
+      dropdown.style.right = 'auto';
+      dropdown.style.top = Math.max(gutter, rect.bottom + 6) + 'px';
+      dropdown.style.transform = 'translateY(0)';
+    }
+
+    wraps.forEach(function (wrap) {
+      var toggle = wrap.querySelector('.cs-nav-toggle');
+      var dropdown = wrap.querySelector('.cs-dropdown');
+      if (!toggle || !dropdown) return;
+
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.addEventListener('click', function (event) {
+        if (!small()) return;
+        event.preventDefault();
+        event.stopPropagation();
+        var willOpen = !wrap.classList.contains('is-open');
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(function (other) {
+          if (other !== wrap) closeWrap(other);
+        });
+        if (willOpen) {
+          wrap.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          positionDropdown(wrap);
+          requestAnimationFrame(function () { positionDropdown(wrap); });
+        } else {
+          closeWrap(wrap);
+        }
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('.cs-nav-dropdown-wrap')) {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (!small()) {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(closeWrap);
+      } else {
+        document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
+      }
+    });
+
+    window.addEventListener('scroll', function () {
+      if (small()) document.querySelectorAll('.cs-nav-dropdown-wrap.is-open').forEach(positionDropdown);
+    }, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initResponsiveNav);
+  } else {
+    initResponsiveNav();
+  }
+})();
+</script>
+
 </body>
 </html>

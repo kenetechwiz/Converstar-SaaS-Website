@@ -8,15 +8,13 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <style>
-    /* Global Styles & Fixes */
+    /* Global Styles */
     * {
       box-sizing: border-box;
     }
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      max-width: 100%;
-      overflow-x: hidden;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: #FAFAFA;
       color: #111827;
@@ -47,6 +45,12 @@
     @keyframes barGrow {
       0% { height: 10%; }
       100% { height: var(--target-height); }
+    }
+
+    .popup-notif-1:hover, .popup-notif-2:hover, .popup-notif-3:hover, .popup-notif-4:hover, .popup-notif-5:hover, .popup-notif-6:hover {
+      transform: translateY(-4px) scale(1.03) !important;
+      box-shadow: 0 26px 46px -8px rgba(139, 92, 246, 0.35), 0 12px 20px -6px rgba(0, 0, 0, 0.1) !important;
+      animation-play-state: paused;
     }
 
     .animate-red-line { animation: lineMoveRed 3s ease-in-out infinite; }
@@ -106,6 +110,7 @@
     }
   </style>
 <style>
+html{scroll-behavior:smooth}
 body>section{animation:csPageSection .65s ease both}
 body>section:nth-of-type(2){animation-delay:.04s}
 body>section:nth-of-type(3){animation-delay:.08s}
@@ -345,7 +350,7 @@ body>section:nth-of-type(4){animation-delay:.12s}
 <span class="animate-dot-blink cs-inline-efbd752721"></span>
 <span class="animate-dot-blink cs-inline-fcade43ea9"></span>
 <span class="animate-dot-blink cs-inline-6991976b98"></span>
-<span class="cs-inline-094ef3d07e">dashboard.converstar.com/analytics</span>
+<span class="animate-inline-094ef3d07e">dashboard.converstar.com/analytics</span>
 </div>
 <div class="cs-inline-a602572713">
 <div class="animate-red-line cs-inline-765e8537f7"></div>
@@ -677,6 +682,7 @@ body>section:nth-of-type(4){animation-delay:.12s}
       card.classList.remove("cs-hide");
       card.classList.add("cs-show");
 
+      // Hide after 5 seconds
       setTimeout(() => {
         card.classList.remove("cs-show");
         card.classList.add("cs-hide");
@@ -685,6 +691,7 @@ body>section:nth-of-type(4){animation-delay:.12s}
       currentIndex = (currentIndex + 1) % notifications.length;
     }
 
+    // Trigger first popup after 2 seconds, then loop every 12 seconds
     setTimeout(showNotification, 2000);
     setInterval(showNotification, 12000);
   });
