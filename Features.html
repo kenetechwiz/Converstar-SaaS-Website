@@ -1301,8 +1301,58 @@ img, svg, video, iframe, canvas { max-width:100%; height:auto; }
 <div class="cs-inline-c9a7335caf">
 <a class="cs-inline-5902129052" href="https://converstar.com/login">Sign In</a>
 <a class="cs-inline-5f595e4068" href="Pricing.html">Get Started</a>
+<a class="cs-inline-5f595e4068" href="Pricing.html">Get Started</a>
 </div>
 </div>
+
+<button id="cs-mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="cs-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<div id="cs-mobile-menu" aria-hidden="true">
+  <div id="cs-mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div id="cs-mobile-menu-brand">
+      <a href="index.html"><img src="https://i.ibb.co/Dfh0Z48j/remove-the-square-shape-Yh-Vuoa-QFU8apo-Rc-T3-J-Vmg-gt-ERf-CRu-OMg-OWAAf-r-ZA.jpg" alt="Converstar Logo"><span>Converstar</span></a>
+      <button id="cs-mobile-menu-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <nav id="cs-mobile-menu-links">
+      <a href="index.html">Home</a>
+      <div class="cs-mobile-accordion">
+        <button type="button" aria-expanded="false">Features <span class="cs-mobile-chevron"></span></button>
+        <div class="cs-mobile-submenu">
+          <a href="feature%20targeting.html">Behavioral Triggers</a>
+          <a href="feature%20socialproof.html">Social Proof Engine</a>
+          <a href="feature%20chat.html">Live Chat Widget</a>
+          <a href="feature%20analytics.html">Analytics Suite</a>
+        </div>
+      </div>
+      <a href="Pricing.html">Pricing</a>
+      <div class="cs-mobile-accordion">
+        <button type="button" aria-expanded="false">Solutions <span class="cs-mobile-chevron"></span></button>
+        <div class="cs-mobile-submenu">
+          <a href="solutions%20ecommerce.html">For E-commerce</a>
+          <a href="solutions%20saas.html">For SaaS &amp; Startups</a>
+          <a href="solutions%20agency.html">For Agencies &amp; Marketers</a>
+        </div>
+      </div>
+    </nav>
+    <div id="cs-mobile-menu-actions">
+      <a id="cs-mobile-signin" href="https://converstar.com/login">Sign In</a>
+      <a id="cs-mobile-getstarted" href="Pricing.html">Get Started</a>
+    </div>
+  </div>
+</div>
+<script id="cs-mobile-nav-only">
+(function(){
+  var toggle=document.getElementById('cs-mobile-menu-toggle'), menu=document.getElementById('cs-mobile-menu'), close=document.getElementById('cs-mobile-menu-close');
+  if(!toggle||!menu||!close) return;
+  function setMenu(open){ toggle.setAttribute('aria-expanded',String(open)); menu.setAttribute('aria-hidden',String(!open)); menu.classList.toggle('cs-open',open); document.body.style.overflow=open?'hidden':''; }
+  toggle.addEventListener('click',function(){setMenu(true);});
+  close.addEventListener('click',function(){setMenu(false);});
+  menu.addEventListener('click',function(e){if(e.target===menu) setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') setMenu(false);});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  menu.querySelectorAll('.cs-mobile-accordion > button').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement; var open=item.classList.toggle('cs-open'); btn.setAttribute('aria-expanded',String(open));});});
+})();
+</script>
+
 
 <button id="cs-mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="cs-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
 <div id="cs-mobile-menu" aria-hidden="true">
@@ -1425,6 +1475,7 @@ img, svg, video, iframe, canvas { max-width:100%; height:auto; }
 <li>SPA Tracking Optimization</li>
 </ul>
 <a class="btn-animated cs-inline-2e7a17b336" href="#">Start Your Free Trial Now</a>
+<a class="btn-animated cs-inline-2e7a17b336" href="#">Start Your Free Trial Now</a>
 </div>
 </section>
 <!-- Section 3: Direct Chat & Lead Capture -->
@@ -1455,6 +1506,7 @@ img, svg, video, iframe, canvas { max-width:100%; height:auto; }
 <p class="cs-inline-7c98a7f8a8">Stop Hiding Behind Contact Forms. Start Closing Deals.</p>
 <p class="cs-inline-9ef31afe24">The era of making your customers wait 24-48 hours for a response is dead. Put an invisible 24/7 closer on your website today.</p>
 <a class="btn-animated cs-inline-17780b72db" href="#">Start Your Free Trial Now</a>
+<a class="btn-animated cs-inline-17780b72db" href="#">Start Your Free Trial Now</a>
 </div>
 </section>
 <!-- Section 4: Analytics & Tracking -->
@@ -1484,6 +1536,7 @@ img, svg, video, iframe, canvas { max-width:100%; height:auto; }
 <li>Data-Driven Conversions: Not Just a Click Away</li>
 </ul>
 <a class="btn-animated cs-inline-2e7a17b336" href="#">Start Your Free Trial Now</a>
+<a class="btn-animated cs-inline-2e7a17b336" href="#">Start Your Free Trial Now</a>
 </div>
 </section>
 </main>
@@ -1492,6 +1545,7 @@ img, svg, video, iframe, canvas { max-width:100%; height:auto; }
 <div class="container">
 <h2>Stop Leaving Your Money on the Table</h2>
 <p>If Converstar recovers just one lost customer who was about to click the "back" button and leave your site forever, the software has completely paid for itself. Every sale it saves after that is pure, automated profit.</p>
+<a class="btn-secondary-animated cs-inline-a428314b4a" href="#">Plug the Leak Today — Start Your Free Trial</a>
 <a class="btn-secondary-animated cs-inline-a428314b4a" href="#">Plug the Leak Today — Start Your Free Trial</a>
 </div>
 </section>

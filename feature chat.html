@@ -758,8 +758,58 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 <div class="cs-inline-c9a7335caf">
 <a class="cs-inline-5902129052" href="https://converstar.com/login">Sign In</a>
 <a class="cs-inline-5f595e4068" href="Pricing.html">Get Started</a>
+<a class="cs-inline-5f595e4068" href="Pricing.html">Get Started</a>
 </div>
 </div>
+
+<button id="cs-mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="cs-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<div id="cs-mobile-menu" aria-hidden="true">
+  <div id="cs-mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div id="cs-mobile-menu-brand">
+      <a href="index.html"><img src="https://i.ibb.co/Dfh0Z48j/remove-the-square-shape-Yh-Vuoa-QFU8apo-Rc-T3-J-Vmg-gt-ERf-CRu-OMg-OWAAf-r-ZA.jpg" alt="Converstar Logo"><span>Converstar</span></a>
+      <button id="cs-mobile-menu-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <nav id="cs-mobile-menu-links">
+      <a href="index.html">Home</a>
+      <div class="cs-mobile-accordion">
+        <button type="button" aria-expanded="false">Features <span class="cs-mobile-chevron"></span></button>
+        <div class="cs-mobile-submenu">
+          <a href="feature%20targeting.html">Behavioral Triggers</a>
+          <a href="feature%20socialproof.html">Social Proof Engine</a>
+          <a href="feature%20chat.html">Live Chat Widget</a>
+          <a href="feature%20analytics.html">Analytics Suite</a>
+        </div>
+      </div>
+      <a href="Pricing.html">Pricing</a>
+      <div class="cs-mobile-accordion">
+        <button type="button" aria-expanded="false">Solutions <span class="cs-mobile-chevron"></span></button>
+        <div class="cs-mobile-submenu">
+          <a href="solutions%20ecommerce.html">For E-commerce</a>
+          <a href="solutions%20saas.html">For SaaS &amp; Startups</a>
+          <a href="solutions%20agency.html">For Agencies &amp; Marketers</a>
+        </div>
+      </div>
+    </nav>
+    <div id="cs-mobile-menu-actions">
+      <a id="cs-mobile-signin" href="https://converstar.com/login">Sign In</a>
+      <a id="cs-mobile-getstarted" href="Pricing.html">Get Started</a>
+    </div>
+  </div>
+</div>
+<script id="cs-mobile-nav-only">
+(function(){
+  var toggle=document.getElementById('cs-mobile-menu-toggle'), menu=document.getElementById('cs-mobile-menu'), close=document.getElementById('cs-mobile-menu-close');
+  if(!toggle||!menu||!close) return;
+  function setMenu(open){ toggle.setAttribute('aria-expanded',String(open)); menu.setAttribute('aria-hidden',String(!open)); menu.classList.toggle('cs-open',open); document.body.style.overflow=open?'hidden':''; }
+  toggle.addEventListener('click',function(){setMenu(true);});
+  close.addEventListener('click',function(){setMenu(false);});
+  menu.addEventListener('click',function(e){if(e.target===menu) setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') setMenu(false);});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  menu.querySelectorAll('.cs-mobile-accordion > button').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement; var open=item.classList.toggle('cs-open'); btn.setAttribute('aria-expanded',String(open));});});
+})();
+</script>
+
 
 <button id="cs-mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="cs-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
 <div id="cs-mobile-menu" aria-hidden="true">
