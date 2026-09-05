@@ -717,6 +717,67 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
   transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .15s ease;
 }
 </style>
+
+<style id="cs-mobile-nav-footer-only">
+@media (max-width: 768px) {
+  .cs-site-header .cs-main-nav, .cs-site-header .cs-inline-c9a7335caf { display:none !important; }
+  .cs-site-header .cs-header-inner { justify-content:space-between !important; }
+  #cs-mobile-menu-toggle { display:flex; width:46px; height:42px; padding:0; border:0; border-radius:12px; background:#8B5CF6; align-items:center; justify-content:center; flex-direction:column; gap:5px; cursor:pointer; box-shadow:0 8px 20px rgba(139,92,246,.22); }
+  #cs-mobile-menu-toggle span { display:block; width:21px; height:2px; border-radius:99px; background:#fff; }
+  #cs-mobile-menu-toggle:focus-visible { outline:3px solid rgba(139,92,246,.35); outline-offset:3px; }
+  #cs-mobile-menu { position:fixed; inset:0; z-index:99999; display:none; background:rgba(17,24,39,.42); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  #cs-mobile-menu.cs-open { display:block; }
+  #cs-mobile-menu-panel { position:absolute; top:0; right:0; width:min(88vw,380px); height:100%; overflow-y:auto; background:#fff; padding:22px 20px 24px; box-shadow:-18px 0 50px rgba(15,23,42,.18); transform:translateX(100%); transition:transform .25s ease; }
+  #cs-mobile-menu.cs-open #cs-mobile-menu-panel { transform:translateX(0); }
+  #cs-mobile-menu-brand { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:22px; }
+  #cs-mobile-menu-brand a { display:flex; align-items:center; gap:9px; text-decoration:none; color:#111827; font-weight:800; }
+  #cs-mobile-menu-brand img { width:32px; height:32px; object-fit:cover; border-radius:9px; }
+  #cs-mobile-menu-close { width:38px; height:38px; border:0; border-radius:10px; background:#f3f4f6; color:#374151; font-size:24px; line-height:1; cursor:pointer; }
+  #cs-mobile-menu-links { display:flex; flex-direction:column; gap:4px; }
+  #cs-mobile-menu-links > a, #cs-mobile-menu-links > .cs-mobile-accordion > button { width:100%; min-height:48px; padding:12px 8px; border:0; background:transparent; color:#1f2937; text-decoration:none; font:inherit; font-size:16px; font-weight:650; display:flex; align-items:center; justify-content:space-between; text-align:left; border-radius:10px; cursor:pointer; box-sizing:border-box; }
+  #cs-mobile-menu-links > a:hover, #cs-mobile-menu-links > .cs-mobile-accordion > button:hover { background:#f5f3ff; color:#7c3aed; }
+  .cs-mobile-chevron { width:8px; height:8px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(45deg); transition:transform .2s ease; margin-right:5px; }
+  .cs-mobile-accordion.cs-open > button .cs-mobile-chevron { transform:rotate(225deg); }
+  .cs-mobile-submenu { display:none; padding:2px 0 7px 14px; }
+  .cs-mobile-accordion.cs-open .cs-mobile-submenu { display:flex; flex-direction:column; }
+  .cs-mobile-submenu a { padding:10px 10px; color:#6b7280; font-size:14px; line-height:1.35; text-decoration:none; border-radius:8px; }
+  .cs-mobile-submenu a:hover { background:#f5f3ff; color:#7c3aed; }
+  #cs-mobile-menu-actions { display:flex; flex-direction:column; gap:10px; margin-top:24px; padding-top:18px; border-top:1px solid #e5e7eb; }
+  #cs-mobile-menu-actions a { width:100%; min-height:48px; border-radius:11px; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:15px; font-weight:700; box-sizing:border-box; }
+  #cs-mobile-signin { border:1px solid #8B5CF6; color:#7c3aed; background:#fff; }
+  #cs-mobile-getstarted { border:1px solid #8B5CF6; color:#fff; background:#8B5CF6; }
+  .cs-site-header #cs-mobile-menu-toggle { flex-shrink:0; }
+  .cs-site-header { position:relative; z-index:1000; }
+  .cs-site-header .cs-header-inner { width:100% !important; max-width:100% !important; box-sizing:border-box; }
+  body footer .cs-footer-grid { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:28px 22px !important; }
+  body footer .cs-footer-grid > div:first-child { grid-column:1 / -1 !important; text-align:left; }
+  body footer .cs-footer-grid > div:not(:first-child) { min-width:0; }
+}
+@media (min-width: 769px) { #cs-mobile-menu-toggle, #cs-mobile-menu { display:none !important; } }
+</style>
+
+
+<style id="cs-mobile-menu-position-only">
+/* Mobile-only: place the hamburger on the far right and align it with the logo row. */
+@media (max-width: 768px) {
+  .cs-site-header { position: relative !important; }
+  .cs-site-header .cs-header-inner { padding-right: 78px !important; }
+  #cs-mobile-menu-toggle {
+    position: absolute !important;
+    top: 50% !important;
+    right: 16px !important;
+    left: auto !important;
+    margin: 0 !important;
+    transform: translateY(-50%) !important;
+    z-index: 1001 !important;
+  }
+}
+@media (max-width: 480px) {
+  .cs-site-header .cs-header-inner { padding-right: 72px !important; }
+  #cs-mobile-menu-toggle { right: 12px !important; }
+}
+</style>
+
 </head>
 <body class="cs-inline-39d15274db cs-site-body">
 <!-- Outer Header Wrapper Section (1140px Max Width) -->
@@ -734,9 +795,58 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 <!-- App Links -->
 <div class="cs-inline-c9a7335caf">
 <a class="cs-inline-5902129052" href="https://converstar.com/login">Sign In</a>
-<a class="cs-inline-5f595e4068" href="https://converstar.com/pricing">Get Started</a>
+<a class="cs-inline-5f595e4068" href="Pricing.html">Get Started</a>
 </div>
 </div>
+
+<button id="cs-mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="cs-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<div id="cs-mobile-menu" aria-hidden="true">
+  <div id="cs-mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div id="cs-mobile-menu-brand">
+      <a href="index.html"><img src="https://i.ibb.co/Dfh0Z48j/remove-the-square-shape-Yh-Vuoa-QFU8apo-Rc-T3-J-Vmg-gt-ERf-CRu-OMg-OWAAf-r-ZA.jpg" alt="Converstar Logo"><span>Converstar</span></a>
+      <button id="cs-mobile-menu-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <nav id="cs-mobile-menu-links">
+      <a href="index.html">Home</a>
+      <div class="cs-mobile-accordion">
+        <button type="button" aria-expanded="false">Features <span class="cs-mobile-chevron"></span></button>
+        <div class="cs-mobile-submenu">
+          <a href="feature%20targeting.html">Behavioral Triggers</a>
+          <a href="feature%20socialproof.html">Social Proof Engine</a>
+          <a href="feature%20chat.html">Live Chat Widget</a>
+          <a href="feature%20analytics.html">Analytics Suite</a>
+        </div>
+      </div>
+      <a href="Pricing.html">Pricing</a>
+      <div class="cs-mobile-accordion">
+        <button type="button" aria-expanded="false">Solutions <span class="cs-mobile-chevron"></span></button>
+        <div class="cs-mobile-submenu">
+          <a href="solutions%20ecommerce.html">For E-commerce</a>
+          <a href="solutions%20saas.html">For SaaS &amp; Startups</a>
+          <a href="solutions%20agency.html">For Agencies &amp; Marketers</a>
+        </div>
+      </div>
+    </nav>
+    <div id="cs-mobile-menu-actions">
+      <a id="cs-mobile-signin" href="https://converstar.com/login">Sign In</a>
+      <a id="cs-mobile-getstarted" href="Pricing.html">Get Started</a>
+    </div>
+  </div>
+</div>
+<script id="cs-mobile-nav-only">
+(function(){
+  var toggle=document.getElementById('cs-mobile-menu-toggle'), menu=document.getElementById('cs-mobile-menu'), close=document.getElementById('cs-mobile-menu-close');
+  if(!toggle||!menu||!close) return;
+  function setMenu(open){ toggle.setAttribute('aria-expanded',String(open)); menu.setAttribute('aria-hidden',String(!open)); menu.classList.toggle('cs-open',open); document.body.style.overflow=open?'hidden':''; }
+  toggle.addEventListener('click',function(){setMenu(true);});
+  close.addEventListener('click',function(){setMenu(false);});
+  menu.addEventListener('click',function(e){if(e.target===menu) setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') setMenu(false);});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  menu.querySelectorAll('.cs-mobile-accordion > button').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement; var open=item.classList.toggle('cs-open'); btn.setAttribute('aria-expanded',String(open));});});
+})();
+</script>
+
 </header>
 <!-- Intermediate Main Content Section: Legal Page Header (1000px Max Width) -->
 <section class="animate-fade-in cs-inline-9260bfc0b2">
