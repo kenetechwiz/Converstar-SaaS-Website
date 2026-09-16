@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Converstar - E-Commerce Solutions</title>
+<title>Converstar - E-Commerce Solutions</title><style>#cs-signup-overlay.cs-signup-overlay{visibility:hidden!important;opacity:0!important;pointer-events:none!important}#cs-signup-overlay.cs-signup-overlay.cs-open{visibility:visible!important;opacity:1!important;pointer-events:auto!important}</style>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -1236,6 +1236,10 @@ nav a:hover { color: #8B5CF6; text-shadow: 0 0 10px rgba(139,92,246,.65), 0 0 20
 (function(){
   var overlay=document.getElementById("cs-signup-overlay");
   if(!overlay)return;
+  /* Guard against the popup ever painting open on initial load
+     (e.g. stale cache, bfcache restore, or any unexpected trigger). */
+  overlay.classList.remove("cs-open");
+  overlay.setAttribute("aria-hidden","true");
   var lastFocus=null;
   function openSignup(){
     lastFocus=document.activeElement;
